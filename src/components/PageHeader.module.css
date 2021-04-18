@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navigationLinks {
+  list-style: var(--navigation-list-style);
+  margin-left: var(--padding-medium);
+  text-align: right;
+}
+
+.navigationLink {
+  display: inline-block;
+  margin-right: var(--padding-small);
+}

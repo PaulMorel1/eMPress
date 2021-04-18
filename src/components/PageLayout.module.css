@@ -1,0 +1,5 @@
+.pageContainer {
+  background-color: var(--page-background-color);
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+}

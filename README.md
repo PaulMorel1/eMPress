@@ -1,4 +1,4 @@
-# eMPress
+# Empress
 
 Minimalist FOSS blog platform for the 21st century based on Gatsby.
 
@@ -6,13 +6,14 @@ Created by Evan X. Merz.
 
 ## Philosophy
 
-This is not a starter.
-It's a full fledged static blog.
-
-But it also follows a minimalist philosophy,
-both in source and in style.
-
-Everything here is a core feature.
+The name comes from M-Press, which stands for 
+Modern, or Minimalist, version of WordPress. I
+originally started this project as a modern, 
+static alternative to WordPress that I could 
+host for as close to free as possible on AWS.
+The goal is a blogging platform for the 21st
+century that has all the core features of a 
+static blog, without any bloat.
 
 ### But why no SASS? Styled Components? Typography?
 
@@ -23,6 +24,15 @@ dependencies. For this reason I wanted to keep this blog
 as vanilla as possible.
 
 You can add any libraries that you like.
+
+## Requirements
+
+To use it out-of-the-box as a blog platform, you need
+the following things.
+
+- a free GitHub account
+- a free AWS account
+- knowledge of git and markdown
 
 ## Features
 
@@ -71,3 +81,8 @@ Just commit your new stuff and push to master on GitHub.
 Deploy this starter with one click on [Gatsby Cloud](https://www.gatsbyjs.com/cloud/):
 
 [<img src="https://www.gatsbyjs.com/deploynow.svg" alt="Deploy to Gatsby Cloud">](https://www.gatsbyjs.com/dashboard/deploynow?url=https://github.com/gatsbyjs/my-gatsby-site)
+
+
+## License
+
+CC BY-NC 3.0: https://creativecommons.org/licenses/by-nc/3.0/

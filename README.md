@@ -1,52 +1,70 @@
-<h1 align="center">
-  eMPress
-</h1>
-<p>
-  Minimalist FOSS blog platform for the 21st century based on Gatsby.
-</p>
-<p>
-  Created by Evan X. Merz.
-</p>
+# eMPress
 
-## 🚀 Quick start
+Minimalist FOSS blog platform for the 21st century based on Gatsby.
 
-1.  **Create a Gatsby site.**
+Created by Evan X. Merz.
 
-    Use the Gatsby CLI to create a new site, specifying the minimal starter.
+## Philosophy
 
-    ```shell
-    # create a new Gatsby site using the minimal starter
-    npm init gatsby
-    ```
+This is not a starter.
+It's a full fledged static blog.
 
-2.  **Start developing.**
+But it also follows a minimalist philosophy,
+both in source and in style.
 
-    Navigate into your new site’s directory and start it up.
+Everything here is a core feature.
 
-    ```shell
-    cd my-gatsby-site/
-    npm run develop
-    ```
+### But why no SASS? Styled Components? Typography?
 
-3.  **Open the code and start customizing!**
+When I tried to set up a Gatsby blog using other starters,
+I found that I couldn't upgrade to the latest version of
+major dependencies, such as Gatsby, due to a broken web of
+dependencies. For this reason I wanted to keep this blog
+as vanilla as possible.
 
-    Your site is now running at http://localhost:8000!
+You can add any libraries that you like.
 
-    Edit `src/pages/index.js` to see your site update in real-time!
+## Features
 
-4.  **Learn more**
+- TODO: Index page
+- TODO: Menus
+- TODO: Markdown posts
+- TODO: Themes
+- TODO: Automatic deployment to AWS
+- TODO: Tags
 
-    - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+## Development
 
-    - [Tutorials](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+It's a minimalist gatsby project.
 
-    - [Guides](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+```
+npm install
+npm run develop
+```
 
-    - [API Reference](https://www.gatsbyjs.com/docs/api-reference/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+## Build
 
-    - [Plugin Library](https://www.gatsbyjs.com/plugins?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+```
+npm run build
+```
 
-    - [Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+## Deploy
+
+Just commit your new stuff and push to master on GitHub.
+
+##  Learn more about Gatsby
+
+  - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+
+  - [Tutorials](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+
+  - [Guides](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+
+  - [API Reference](https://www.gatsbyjs.com/docs/api-reference/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+
+  - [Plugin Library](https://www.gatsbyjs.com/plugins?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+
+  - [Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
 
 ## 🚀 Quick start (Gatsby Cloud)
 

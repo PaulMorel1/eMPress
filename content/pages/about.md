@@ -15,8 +15,8 @@ About a week in, I realized that that goal was sort of misguided. I don't want a
 Maybe that difference is subtle.
 
 But here's the TLDR:
-- Free and Open Source
-- Minimalist
-- No reliance on tools from the 1990s
+- Free and Open Source.
+- Minimalist. I've rigorously avoided adding any packages beyond the bare minimum. This means you can add whatever you want without worrying about broken dependency graphs which have prevented me from using other similar projects.
+- No reliance on tools from the 1990s. No FTP. No PHP.
 - Can be hosted for as cheap as possible on AWS. I don't think it's possible to host a blog more cheaply.
 - Can be automatically deployed using GitHub Actions.

@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: "eMPress",
+    title: "Empress Blog",
   },
   plugins: [
     "gatsby-plugin-image",
@@ -25,5 +25,12 @@ module.exports = {
       },
       __key: "pages",
     },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "posts",
+        path: `${__dirname}/content/posts/`,
+      }
+    }
   ],
 };

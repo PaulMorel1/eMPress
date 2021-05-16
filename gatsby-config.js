@@ -8,6 +8,7 @@ module.exports = {
     "gatsby-plugin-sitemap",
     "gatsby-transformer-remark",
     "gatsby-plugin-sharp",
+    "gatsby-transformer-json",
     "gatsby-transformer-sharp",
     {
       resolve: "gatsby-source-filesystem",
@@ -37,6 +38,13 @@ module.exports = {
       options: {
         name: "pages",
         path: `${__dirname}/content/pages/`,
+      }
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "menus",
+        path: `${__dirname}/content/menus/`,
       }
     },
   ],

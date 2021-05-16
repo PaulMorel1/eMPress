@@ -7,7 +7,7 @@ const IndexPage = (props) => {
   return (
     <PageLayout title={props.data.site.siteMetadata.title}>
       <div>
-        {props.data.allMarkdownRemark.edges.map(({ node }) => (
+        {props.data.posts.edges.map(({ node }) => (
           <div key={node.id}>
             <h3>{node.frontmatter.title}</h3>
             <p>{node.frontmatter.date} - {node.frontmatter.author}</p>
@@ -29,7 +29,19 @@ export const query = graphql`
         title
       }
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }, filter: { frontmatter: {published: {eq: true}}}) {
+    posts: allMarkdownRemark(
+      sort: { 
+        fields: [frontmatter___date], order: DESC 
+      }, 
+      filter: { 
+        frontmatter: {
+          published: {eq: true} 
+        }, 
+        fields: { 
+          collection: {eq: "posts"}
+        }
+      }
+    ) {
       totalCount
       edges {
         node {

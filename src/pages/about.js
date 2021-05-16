@@ -1,12 +1,15 @@
 import React from "react";
 import Title from "../components/Title";
 import { Link } from "gatsby";
+import { graphql } from "gatsby";
+
 import PageLayout from "../components/PageLayout";
 
-export default function About() {
+
+export default function About({ data }) {
   return (
-    <PageLayout>
-      <Title title='About eMPress' />
+    <PageLayout title={data.site.siteMetadata.title}>
+      <Title title="Here's a post title" />
       <p>
         It's a FOSS blog platform based on Gatsby.
       </p>
@@ -16,3 +19,13 @@ export default function About() {
     </PageLayout>
   );
 }
+
+export const query = graphql`
+  query {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+  }
+`;

@@ -3,12 +3,12 @@ import { Link } from "gatsby";
 import "../styles/Global.css";
 import * as PageHeaderStyles from "./PageHeader.module.css";
 
-export default function PageHeader() {
+export default function PageHeader(props) {
   return (
     <header className={['containerPadded', PageHeaderStyles.container].join(' ')}>
       <div>
         <Link to="/">
-          <h3>eMPress Blog</h3>
+          <h3>{props.title}</h3>
         </Link>
       </div>
       <div>

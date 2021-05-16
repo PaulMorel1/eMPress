@@ -4,12 +4,12 @@ import * as PageLayoutStyles from "./PageLayout.module.css";
 import PageHeader from "./PageHeader";
 import PageFooter from "./PageFooter";
 
-export default function PageLayout({ children }) {
+export default function PageLayout(props) {
   return (
     <div className={PageLayoutStyles.pageContainer}>
-      <PageHeader />
+      <PageHeader title={props.title} />
       <main>
-        {children}
+        {props.children}
       </main>
       <PageFooter />      
     </div>

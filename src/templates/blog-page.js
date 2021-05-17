@@ -7,7 +7,7 @@ const BlogPage = ({ data }) => {
   const post = data.markdownRemark;
 
   return (
-    <PageLayout title={data.site.siteMetadata.title}>
+    <PageLayout>
       <div>
         <h3>{post.frontmatter.title}</h3>
         <p>{post.frontmatter.date} - {post.frontmatter.author}</p>
@@ -21,11 +21,6 @@ export default BlogPage;
 
 export const query = graphql`
   query($slug: String!) {
-    site {
-      siteMetadata {
-        title
-      }
-    }
     markdownRemark(
       frontmatter: {
         published: {eq: true}

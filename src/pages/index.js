@@ -5,7 +5,7 @@ import PageLayout from "../components/PageLayout";
 
 const IndexPage = (props) => {
   return (
-    <PageLayout title={props.data.site.siteMetadata.title}>
+    <PageLayout>
       <div>
         {props.data.posts.edges.map(({ node }) => (
           <div key={node.id}>
@@ -24,11 +24,6 @@ export default IndexPage
 
 export const query = graphql`
   query {
-    site {
-      siteMetadata {
-        title
-      }
-    }
     posts: allMarkdownRemark(
       sort: { 
         fields: [frontmatter___date], order: DESC 

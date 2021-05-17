@@ -1,10 +1,14 @@
 import React from "react";
-import { Link } from "gatsby";
+import { Link, StaticQuery, graphql } from "gatsby";
 import "../styles/Global.css";
 import * as PageHeaderStyles from "./PageHeader.module.css";
+import makeMenuItems from "../helpers/makeMenuItems.js";
 
+/**
+ * See reference by Emma Bostian at 
+ * https://itnext.io/reading-data-from-a-json-file-with-gatsby-graphql-572b18ab98a
+ */
 export default function PageHeader(props) {
-    // TODO: This should take all 'menu' pages as a prop and list them all
   return (
     <header className={['containerPadded', PageHeaderStyles.container].join(' ')}>
       <div>
@@ -13,10 +17,24 @@ export default function PageHeader(props) {
         </Link>
       </div>
       <div>
-        <ul className={PageHeaderStyles.navigationLinks}>
-          <li className={PageHeaderStyles.navigationLink}><Link to="/">Home</Link></li>
-          <li className={PageHeaderStyles.navigationLink}><Link to="/about-empress-blog-platform">About</Link></li>
-        </ul>
+      <StaticQuery
+        query={graphql`
+          query HeaderMenuItemsQuery {
+            allHeaderMenuItemsJson {
+              edges {
+                node {
+                  label
+                  path
+                }
+              }
+            }
+          }
+        `}
+        render={data => (
+          <ul className={PageHeaderStyles.navigationLinks}>
+            {makeMenuItems({ menuItemsJson: data.allHeaderMenuItemsJson, className: PageHeaderStyles.navigationLink })}
+          </ul>
+        )} />
       </div>
     </header>
   );

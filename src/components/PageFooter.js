@@ -1,7 +1,8 @@
 import React from "react";
-import { Link, StaticQuery, graphql } from "gatsby";
+import { StaticQuery, graphql } from "gatsby";
 import "../styles/Global.css";
 import * as PageFooterStyles from "./PageFooter.module.css";
+import makeMenuItems from "../helpers/makeMenuItems.js";
 
 /**
  * See reference by Emma Bostian at 
@@ -25,17 +26,9 @@ export default function PageHeader() {
         `}
         render={data => (
           <ul className={PageFooterStyles.navigationLinks}>
-            {makeFooterMenuItems(data)}
+            {makeMenuItems({ menuItemsJson: data.allFooterMenuItemsJson, className: PageFooterStyles.navigationLink })}
           </ul>
-        )}/>
+        )} />
     </footer>
   );
-}
-
-function makeFooterMenuItems(data) {
-  const footerMenuItems = [];
-  data.allFooterMenuItemsJson.edges.forEach(item =>
-    footerMenuItems.push(<li className={PageFooterStyles.navigationLink} key={item.node.label}><Link to={item.node.path}>{item.node.label}</Link></li>)
-  );
-  return footerMenuItems;
 }

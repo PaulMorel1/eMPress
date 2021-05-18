@@ -2,6 +2,7 @@ import * as React from "react"
 import { graphql } from "gatsby";
 
 import PageLayout from "../components/PageLayout";
+import makeTagLinks from "../helpers/makeTagLinks";
 
 const BlogPost = ({ data }) => {
   const post = data.markdownRemark;
@@ -11,6 +12,11 @@ const BlogPost = ({ data }) => {
       <div>
         <h3>{post.frontmatter.title}</h3>
         <p>{post.frontmatter.date} - {post.frontmatter.author}</p>
+        {post.frontmatter.tags && 
+          <p>
+            {makeTagLinks({ tags: post.frontmatter.tags })}
+          </p>
+        }
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
       </div>
     </PageLayout>
@@ -32,6 +38,7 @@ export const query = graphql`
         title
         date(formatString: "DD MMMM, YYYY")
         author
+        tags
       }
     }
   }

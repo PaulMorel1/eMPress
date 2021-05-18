@@ -1,5 +1,8 @@
 .pageContainer {
+  position: relative;
   background-color: var(--page-background-color);
   max-width: var(--page-max-width);
+  min-height: 100vh;
   margin: 0 auto;
+  padding: 0 var(--padding-small);
 }

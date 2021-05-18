@@ -1,6 +1,6 @@
 :root {
   /* html */
-  --html-background-color: #EEEEEE;
+  --html-background-color: #FFFFFF;
 
   /* page */
   --page-max-width: 800px;
@@ -41,7 +41,8 @@ body {
 }
 
 ul {
-  padding-inline-start: 0;
+  padding-inline-start: var(--padding-small);
+  list-style-position: inside;
 }
 
 .containerPadded {

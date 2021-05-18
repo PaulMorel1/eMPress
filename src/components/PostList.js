@@ -8,7 +8,7 @@ export default function PostList(props) {
       {props.posts.edges.map(({ node }) => (
         <div key={node.id}>
           <h3>{node.frontmatter.title}</h3>
-          <p>{node.frontmatter.date} - {node.frontmatter.author}</p>
+          <p>{node.frontmatter.date} - <Link to={`/author/${encodeURI(node.frontmatter.author)}`}>{node.frontmatter.author}</Link></p>
           <p>{node.excerpt}</p>
           <p><Link to={`/post/${node.frontmatter.slug}`}>Read full article</Link></p>
         </div>

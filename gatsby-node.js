@@ -118,7 +118,7 @@ exports.createPages = async({ graphql, actions }) => {
       path: `tag/${tag}`,
       component: path.resolve('./src/templates/post-list-page.js'),
       context: {
-        tag: tag,
+        title: `Posts Tagged "${tag}"`,
         posts: {
           edges: taggedPosts[tag],
         }

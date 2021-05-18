@@ -69,6 +69,7 @@ exports.createPages = async({ graphql, actions }) => {
               date(formatString: "DD MMMM, YYYY")
               author
               slug
+              tags
             }
             excerpt
           }
@@ -88,6 +89,9 @@ exports.createPages = async({ graphql, actions }) => {
     });
   });
 
+  // This will be our list of posts with a given tag
+  let taggedPosts = [];
+
   // loop through each post and create the posts
   result.data.posts.edges.forEach(({ node }) => {
     createPage({
@@ -97,5 +101,28 @@ exports.createPages = async({ graphql, actions }) => {
         slug: node.frontmatter.slug,
       }
     });
+
+    // Store each tag in a hash. This may not be scalable.
+    node.frontmatter.tags.forEach((tag) => {
+      if(!taggedPosts[tag]) {
+        taggedPosts[tag] = [{ node }];
+      } else {
+        taggedPosts[tag].push({ node });
+      }
+    });
   });
+
+  // Loop through each tag map and create list pages for each
+  for(let tag in taggedPosts) {
+    createPage({
+      path: `tag/${tag}`,
+      component: path.resolve('./src/templates/post-list-page.js'),
+      context: {
+        tag: tag,
+        posts: {
+          edges: taggedPosts[tag],
+        }
+      }
+    });    
+  }
 };

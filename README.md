@@ -11,7 +11,7 @@ Modern, or Minimalist, version of WordPress. I
 originally started this project as a modern, 
 static alternative to WordPress that I could 
 host for as close to free as possible on AWS.
-The goal is a blogging platform for the 21st
+The goal is a blog for the 21st
 century that has all the core features of a 
 static blog, without any bloat.
 
@@ -27,7 +27,7 @@ You can add any libraries that you like.
 
 ## Requirements
 
-To use it out-of-the-box as a blog platform, you need
+To use it out-of-the-box as a blog, you need
 the following things.
 
 - a free GitHub account

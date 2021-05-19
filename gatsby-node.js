@@ -81,7 +81,7 @@ exports.createPages = async({ graphql, actions }) => {
   // loop through each page and create the pages
   result.data.pages.edges.forEach(({ node }) => {
     createPage({
-      path: `${node.frontmatter.slug}`,
+      path: `/${node.frontmatter.slug}`,
       component: path.resolve('./src/templates/blog-page.js'),
       context: {
         slug: node.frontmatter.slug,
@@ -96,7 +96,7 @@ exports.createPages = async({ graphql, actions }) => {
   // loop through each post and create the posts
   result.data.posts.edges.forEach(({ node }) => {
     createPage({
-      path: `post/${node.frontmatter.slug}`,
+      path: `/post/${node.frontmatter.slug}`,
       component: path.resolve('./src/templates/blog-post.js'),
       context: {
         slug: node.frontmatter.slug,
@@ -120,24 +120,38 @@ exports.createPages = async({ graphql, actions }) => {
     }
   });
 
+  // variables for pagination
+  let postsPerPage = 5;
+
   // Loop through each tag map and create list pages for each
   for(let tag in taggedPosts) {
-    createPage({
-      path: `tag/${tag}`,
-      component: path.resolve('./src/templates/post-list-page.js'),
-      context: {
-        title: `Posts Tagged "${tag}"`,
-        posts: {
-          edges: taggedPosts[tag],
+    let totalPosts = taggedPosts[tag].length;
+    const numPages = Math.max(Math.ceil(totalPosts / postsPerPage), 1)
+
+    // paginate the posts for this tag
+    for(let i = 0; i < numPages; i++) {
+      const currentPage = i + 1
+
+      createPage({
+        path: i === 0 ? `/tag/${tag}` : `/tag/${tag}/${currentPage}`,
+        component: path.resolve('./src/templates/post-list-page.js'),
+        context: {
+          title: `Posts Tagged "${tag}"`,
+          posts: {
+            edges: taggedPosts[tag].slice(i * postsPerPage, (i+1) * postsPerPage),
+          },
+          nextPage: i < numPages - 1 ? `/tag/${tag}/${currentPage + 1}` : null,
+          previousPage: i > 1 ? `/tag/${tag}/${currentPage - 1}` : (i === 1 ? `/tag/${tag}` : null),
         }
-      }
-    });    
+      });
+    }
+
   }
 
   // Loop through each author map and create list pages for each
   for(let author in authorPosts) {
     createPage({
-      path: `author/${encodeURI(author)}`,
+      path: `/author/${encodeURI(author)}`,
       component: path.resolve('./src/templates/post-list-page.js'),
       context: {
         title: `Posts Written by "${author}"`,

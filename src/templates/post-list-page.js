@@ -8,7 +8,7 @@ const PostListPage = ({ data, classes , pageContext}) => {
   return (
     <PageLayout>
       {pageContext.title && <h2>{pageContext.title}</h2>}
-      <PostList posts={pageContext.posts} />
+      <PostList posts={pageContext.posts} fullText={pageContext.fullText} />
       {pageContext.previousPage &&
         <Link to={pageContext.previousPage}>Previous</Link>
       }

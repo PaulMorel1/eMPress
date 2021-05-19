@@ -74,6 +74,7 @@ exports.createPages = async({ graphql, actions }) => {
               slug
               tags
             }
+            html
             excerpt
           }
         }
@@ -146,6 +147,7 @@ exports.createPages = async({ graphql, actions }) => {
         },
         nextPage: i < numPages - 1 ? `/posts/${currentPage + 1}` : null,
         previousPage: i > 1 ? `/posts/${currentPage - 1}` : (i === 1 ? `/` : null),
+        fullText: true,
       }
     });
   }
@@ -169,6 +171,7 @@ exports.createPages = async({ graphql, actions }) => {
           },
           nextPage: i < numPages - 1 ? `/tag/${tag}/${currentPage + 1}` : null,
           previousPage: i > 1 ? `/tag/${tag}/${currentPage - 1}` : (i === 1 ? `/tag/${tag}` : null),
+          fullText: false,
         }
       });
     }
@@ -194,6 +197,7 @@ exports.createPages = async({ graphql, actions }) => {
           },
           nextPage: i < numPages - 1 ? `${pathPrefix}/${currentPage + 1}` : null,
           previousPage: i > 1 ? `${pathPrefix}/${currentPage - 1}` : (i === 1 ? pathPrefix : null),
+          fullText: false,
         }
       });
     }   

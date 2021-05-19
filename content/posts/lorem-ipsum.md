@@ -2,7 +2,7 @@
 title: "Lorem Ipsum"
 slug: "lorem-ipsum"
 date: "2021-05-18"
-author: "Evan X. Merz"
+author: "Evan"
 tags: 
   - post
   - introduction

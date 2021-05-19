@@ -123,6 +123,8 @@ exports.createPages = async({ graphql, actions }) => {
   // variables for pagination
   let postsPerPage = 5;
 
+  // TODO: Need to deal with invalid URL characters in tags and authors.
+
   // Loop through each tag map and create list pages for each
   for(let tag in taggedPosts) {
     let totalPosts = taggedPosts[tag].length;
@@ -145,20 +147,30 @@ exports.createPages = async({ graphql, actions }) => {
         }
       });
     }
-
   }
 
   // Loop through each author map and create list pages for each
   for(let author in authorPosts) {
-    createPage({
-      path: `/author/${encodeURI(author)}`,
-      component: path.resolve('./src/templates/post-list-page.js'),
-      context: {
-        title: `Posts Written by "${author}"`,
-        posts: {
-          edges: authorPosts[author],
+    let totalPosts = authorPosts[author].length;
+    const numPages = Math.max(Math.ceil(totalPosts / postsPerPage), 1)
+
+    // paginate the posts for this tag
+    for(let i = 0; i < numPages; i++) {
+      const currentPage = i + 1
+      const pathPrefix = `/author/${author}`;
+
+      createPage({
+        path: i === 0 ? pathPrefix : `${pathPrefix}/${currentPage}`,
+        component: path.resolve('./src/templates/post-list-page.js'),
+        context: {
+          title: `Posts Written by "${author}"`,
+          posts: {
+            edges: authorPosts[author].slice(i * postsPerPage, (i+1) * postsPerPage),
+          },
+          nextPage: i < numPages - 1 ? `${pathPrefix}/${currentPage + 1}` : null,
+          previousPage: i > 1 ? `${pathPrefix}/${currentPage - 1}` : (i === 1 ? pathPrefix : null),
         }
-      }
-    });    
+      });
+    }   
   }
 };

@@ -2,7 +2,7 @@
 title: "Introducing the Empress Blog Platform"
 slug: "introducing-the-empress-blog-platform"
 date: "2021-04-18"
-author: "Evan X. Merz"
+author: "Evan"
 published: true
 tags: 
   - about

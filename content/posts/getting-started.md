@@ -2,7 +2,7 @@
 title: "Getting Started"
 slug: "getting-started"
 date: "2021-04-17"
-author: "Evan X. Merz"
+author: "Evan"
 tags: 
   - tutorial
   - introduction

@@ -14,7 +14,7 @@ const BlogPost = ({ data }) => {
         <p>{post.frontmatter.date} - <Link to={`/author/${encodeURI(post.frontmatter.author)}`}>{post.frontmatter.author}</Link></p>
         {post.frontmatter.tags && 
           <p>
-            {makeTagLinks({ tags: post.frontmatter.tags })}
+            Tagged {makeTagLinks({ tags: post.frontmatter.tags })}
           </p>
         }
         <div dangerouslySetInnerHTML={{ __html: post.html }} />

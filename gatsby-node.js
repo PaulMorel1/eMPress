@@ -52,6 +52,9 @@ exports.createPages = async({ graphql, actions }) => {
         }
       }
       posts: allMarkdownRemark(
+        sort: { 
+          fields: [frontmatter___date], order: DESC 
+        },
         filter: { 
           frontmatter: {
             published: {eq: true} 
@@ -93,7 +96,7 @@ exports.createPages = async({ graphql, actions }) => {
   let taggedPosts = [];
   let authorPosts = [];
 
-  // loop through each post and create the posts
+  // loop through each post and create the post pages
   result.data.posts.edges.forEach(({ node }) => {
     createPage({
       path: `/post/${node.frontmatter.slug}`,
@@ -125,6 +128,28 @@ exports.createPages = async({ graphql, actions }) => {
 
   // TODO: Need to deal with invalid URL characters in tags and authors.
 
+  // create the paginated index page
+  let allPosts = result.data.posts.edges;
+  let totalPosts = allPosts.length;
+  const numPages = Math.max(Math.ceil(totalPosts / postsPerPage), 1)
+
+  for(let i = 0; i < numPages; i++) {
+    const currentPage = i + 1
+
+    createPage({
+      path: i === 0 ? `/` : `/posts/${currentPage}`,
+      component: path.resolve('./src/templates/post-list-page.js'),
+      context: {
+        title: null,
+        posts: {
+          edges: allPosts.slice(i * postsPerPage, (i + 1) * postsPerPage),
+        },
+        nextPage: i < numPages - 1 ? `/posts/${currentPage + 1}` : null,
+        previousPage: i > 1 ? `/posts/${currentPage - 1}` : (i === 1 ? `/` : null),
+      }
+    });
+  }
+
   // Loop through each tag map and create list pages for each
   for(let tag in taggedPosts) {
     let totalPosts = taggedPosts[tag].length;
@@ -140,7 +165,7 @@ exports.createPages = async({ graphql, actions }) => {
         context: {
           title: `Posts Tagged "${tag}"`,
           posts: {
-            edges: taggedPosts[tag].slice(i * postsPerPage, (i+1) * postsPerPage),
+            edges: taggedPosts[tag].slice(i * postsPerPage, (i + 1) * postsPerPage),
           },
           nextPage: i < numPages - 1 ? `/tag/${tag}/${currentPage + 1}` : null,
           previousPage: i > 1 ? `/tag/${tag}/${currentPage - 1}` : (i === 1 ? `/tag/${tag}` : null),
@@ -165,7 +190,7 @@ exports.createPages = async({ graphql, actions }) => {
         context: {
           title: `Posts Written by "${author}"`,
           posts: {
-            edges: authorPosts[author].slice(i * postsPerPage, (i+1) * postsPerPage),
+            edges: authorPosts[author].slice(i * postsPerPage, (i + 1) * postsPerPage),
           },
           nextPage: i < numPages - 1 ? `${pathPrefix}/${currentPage + 1}` : null,
           previousPage: i > 1 ? `${pathPrefix}/${currentPage - 1}` : (i === 1 ? pathPrefix : null),

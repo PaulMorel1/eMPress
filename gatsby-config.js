@@ -4,6 +4,7 @@ module.exports = {
     description: "Gatsby blog starter for a low cost, full featured blog.",
     author: "Evan X. Merz",
     siteUrl: "https://www.empress.blog",
+    twitterHandle: "@EvanXMerz",
   },
   plugins: [
     "gatsby-plugin-image",

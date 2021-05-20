@@ -7,6 +7,7 @@ const BlogPage = ({ data }) => {
   const post = data.markdownRemark;
   const seoDetails = {
     title: post.frontmatter.title,
+    description: post.excerpt,
   };
 
   return (
@@ -31,6 +32,7 @@ export const query = graphql`
       }
     ) {
       html
+      excerpt
       frontmatter {
         title
         date(formatString: "DD MMMM, YYYY")

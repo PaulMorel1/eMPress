@@ -24,7 +24,7 @@ export default function PageHeader() {
           `}
           render={data => (
             <Link to="/">
-              <h3>{data.site.siteMetadata.title}</h3>
+              <h1>{data.site.siteMetadata.title}</h1>
             </Link>
           )} />
       </div>

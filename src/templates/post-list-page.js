@@ -5,8 +5,12 @@ import PageLayout from "../components/PageLayout";
 import PostList from "../components/PostList";
 
 const PostListPage = ({ data, classes , pageContext}) => {
+  const seoDetails = {
+    title: pageContext.title,
+  };
+  
   return (
-    <PageLayout>
+    <PageLayout seo={seoDetails}>
       {pageContext.title && <h2>{pageContext.title}</h2>}
       <PostList posts={pageContext.posts} fullText={pageContext.fullText} />
       {pageContext.previousPage &&

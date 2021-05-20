@@ -6,9 +6,12 @@ import makeTagLinks from "../helpers/makeTagLinks";
 
 const BlogPost = ({ data }) => {
   const post = data.markdownRemark;
+  const seoDetails = {
+    title: post.frontmatter.title,
+  };
 
   return (
-    <PageLayout>
+    <PageLayout seo={seoDetails}>
       <div>
         <h3>{post.frontmatter.title}</h3>
         <p>{post.frontmatter.date} - <Link to={`/author/${encodeURI(post.frontmatter.author)}`}>{post.frontmatter.author}</Link></p>

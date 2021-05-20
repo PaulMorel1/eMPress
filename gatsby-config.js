@@ -1,6 +1,9 @@
 module.exports = {
   siteMetadata: {
     title: "Empress Blog",
+    description: "Gatsby blog starter for a low cost, full featured blog.",
+    author: "Evan X. Merz",
+    siteUrl: "https://www.empress.blog",
   },
   plugins: [
     "gatsby-plugin-image",

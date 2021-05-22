@@ -1,13 +1,13 @@
 # Empress
 
-Minimalist FOSS blog platform for the 21st century based on Gatsby.
+Full featured Gatsby blog starter that allows you to focus on your blog, rather than your code.
 
 Created by Evan X. Merz.
 
 ## Philosophy
 
 The name comes from M-Press, which stands for 
-Modern, or Minimalist, version of WordPress. I
+Modern, or Minimalist, press. I
 originally started this project as a modern, 
 static alternative to WordPress that I could 
 host for as close to free as possible on AWS.
@@ -36,12 +36,13 @@ the following things.
 
 ## Features
 
-- TODO: Index page
-- TODO: Menus
-- TODO: Markdown posts
-- TODO: Themes
+- Tags
+- Menus
+- Markdown posts
+- Themes
 - TODO: Automatic deployment to AWS
-- TODO: Tags
+- TODO: Google Analytics
+
 
 ## Development
 
@@ -49,7 +50,7 @@ It's a minimalist gatsby project.
 
 ```
 npm install
-npm run develop
+npm run dev
 ```
 
 ## Build
@@ -58,29 +59,15 @@ npm run develop
 npm run build
 ```
 
-## Deploy
+## Deploy on AWS using GitHub Actions
 
-Just commit your new stuff and push to master on GitHub.
+If you are using the built-in GitHub Actions integration, then just commit your new stuff and push to master on GitHub.
 
-##  Learn more about Gatsby
-
-  - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-
-  - [Tutorials](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-
-  - [Guides](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-
-  - [API Reference](https://www.gatsbyjs.com/docs/api-reference/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-
-  - [Plugin Library](https://www.gatsbyjs.com/plugins?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-
-  - [Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-
-## 🚀 Quick start (Gatsby Cloud)
+## Deploy using Gatsby Cloud
 
 Deploy this starter with one click on [Gatsby Cloud](https://www.gatsbyjs.com/cloud/):
 
-[<img src="https://www.gatsbyjs.com/deploynow.svg" alt="Deploy to Gatsby Cloud">](https://www.gatsbyjs.com/dashboard/deploynow?url=https://github.com/gatsbyjs/my-gatsby-site)
+[<img src="https://www.gatsbyjs.com/deploynow.svg" alt="Deploy to Gatsby Cloud">](https://www.gatsbyjs.com/dashboard/deploynow?url=https://github.com/PaulMorel1/eMPress)
 
 
 ## License

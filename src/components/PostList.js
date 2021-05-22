@@ -1,12 +1,12 @@
 import React from "react";
 import BlogPost from "../components/BlogPost";
 
-export default function PostList(props) {
+export default function PostList({ posts, fullText = true }) {
   return (
     <div>
-      {props.posts.edges.map(({ node }) => (
+      {posts.edges.map(({ node }) => (
         <div key={node.id}>
-          <BlogPost post={node} fullText={false} />
+          <BlogPost post={node} fullText={fullText} />
         </div>
       ))}
     </div>

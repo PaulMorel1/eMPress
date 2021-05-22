@@ -4,11 +4,11 @@ import { Link } from "gatsby";
 import PageLayout from "../components/PageLayout";
 import PostList from "../components/PostList";
 
-const PostListPage = ({ pageContext}) => {
+const PostListPage = ({ pageContext }) => {
   const seoDetails = {
     title: pageContext.title,
   };
-  
+
   return (
     <PageLayout seo={seoDetails}>
       {pageContext.title && <h2>{pageContext.title}</h2>}

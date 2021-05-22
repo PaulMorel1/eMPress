@@ -1,19 +1,19 @@
 :root {
   /* html */
-  --html-background-color: #FFFFFF;
+  --html-background-color: #F5F5F5;
 
   /* page */
   --page-max-width: 800px;
-  --page-background-color: #FFFFFF;
+  --page-background-color: #FFF;
 
   /* fonts */
-  --default-font: Arial, Helvetica, sans-serif;
+  --default-font: Verdana, Helvetica, Arial, sans-serif;
   --default-font-size: 1rem;
-  --default-font-color: #000000;
+  --default-font-color: #111;
   --font-size-small: 0.8rem;
 
   /* links */
-  --link-color: #5555BB;
+  --link-color: #77D;
   --link-text-decoration: none;
 
   /* spacing */
@@ -41,6 +41,10 @@ a, a.visited {
 
 body {
   margin: 0;
+}
+
+h1, h2, h3, h4, h5 {
+  font-weight: 400;
 }
 
 h3 {

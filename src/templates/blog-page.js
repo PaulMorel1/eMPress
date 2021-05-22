@@ -1,7 +1,8 @@
 import * as React from "react"
-import { Link, graphql } from "gatsby";
+import { graphql } from "gatsby";
 
 import PageLayout from "../components/PageLayout";
+import BlogPost from "../components/BlogPost";
 
 const BlogPage = ({ data }) => {
   const post = data.markdownRemark;
@@ -12,11 +13,7 @@ const BlogPage = ({ data }) => {
 
   return (
     <PageLayout seo={seoDetails}>
-      <div>
-        <h3>{post.frontmatter.title}</h3>
-        <p>{post.frontmatter.date} - <Link to={`/author/${encodeURI(post.frontmatter.author)}`}>{post.frontmatter.author}</Link></p>
-        <div dangerouslySetInnerHTML={{ __html: post.html }} />
-      </div>
+      <BlogPost post={post} fullText={true} showMeta={false} />
     </PageLayout>
   )
 };

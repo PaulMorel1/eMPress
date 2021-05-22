@@ -1,10 +1,10 @@
 import * as React from "react"
-import { Link, graphql } from "gatsby";
+import { graphql } from "gatsby";
 
 import PageLayout from "../components/PageLayout";
-import makeTagLinks from "../helpers/makeTagLinks";
+import BlogPost from "../components/BlogPost";
 
-const BlogPost = ({ data }) => {
+const BlogPostPage = ({ data }) => {
   const post = data.markdownRemark;
   const seoDetails = {
     title: post.frontmatter.title,
@@ -13,21 +13,12 @@ const BlogPost = ({ data }) => {
 
   return (
     <PageLayout seo={seoDetails}>
-      <div>
-        <h3>{post.frontmatter.title}</h3>
-        <p>{post.frontmatter.date} - <Link to={`/author/${encodeURI(post.frontmatter.author)}`}>{post.frontmatter.author}</Link></p>
-        {post.frontmatter.tags && 
-          <p>
-            Tagged {makeTagLinks({ tags: post.frontmatter.tags })}
-          </p>
-        }
-        <div dangerouslySetInnerHTML={{ __html: post.html }} />
-      </div>
+      <BlogPost post={post} fullText={true} />
     </PageLayout>
   )
 };
 
-export default BlogPost;
+export default BlogPostPage;
 
 export const query = graphql`
   query($slug: String!) {

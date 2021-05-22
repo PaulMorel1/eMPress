@@ -10,10 +10,26 @@ module.exports = {
     "gatsby-plugin-image",
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-sitemap",
-    "gatsby-transformer-remark",
     "gatsby-plugin-sharp",
     "gatsby-transformer-json",
     "gatsby-transformer-sharp",
+    {
+      resolve: "gatsby-transformer-remark",
+      options: {
+        plugins: [
+          {
+            resolve: "gatsby-remark-relative-images",
+            options: {
+              include: ["featured"],
+            }
+          },
+          {
+            resolve: "gatsby-remark-images",
+            options: { maxWidth: 1024 },
+          }
+        ]
+      }
+    },
     {
       resolve: "gatsby-source-filesystem",
       options: {

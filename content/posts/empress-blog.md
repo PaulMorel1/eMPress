@@ -9,4 +9,4 @@ tags:
   - introduction
 ---
 
-The Empress blog frees you up to write, while providing the fastest, cheapest blog possible.
+An Empress Blog frees you up to write, while providing the fastest, cheapest blog possible.

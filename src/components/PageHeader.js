@@ -10,7 +10,7 @@ import PageHeaderMenu from "./PageHeaderMenu.js";
  */
 export default function PageHeader() {
   return (
-    <header className={['containerPadded', PageHeaderStyles.container].join(' ')}>
+    <header className={[PageHeaderStyles.container].join(' ')}>
       <div>
         <StaticQuery
           query={graphql`

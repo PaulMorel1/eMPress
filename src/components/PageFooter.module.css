@@ -5,6 +5,10 @@
   justify-content: left;
 }
 
+.container ul {
+  padding-inline-start: 0;
+}
+
 .navigationLinks {
   list-style: var(--navigation-list-style);
   width: 100%;

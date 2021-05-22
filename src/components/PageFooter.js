@@ -10,7 +10,7 @@ import makeMenuItems from "../helpers/makeMenuItems.js";
  */
 export default function PageHeader() {
   return (
-    <footer className={['containerPadded', PageFooterStyles.container].join(' ')}>
+    <footer className={[PageFooterStyles.container].join(' ')}>
       <StaticQuery
         query={graphql`
           query FooterMenuItemsQuery {

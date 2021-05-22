@@ -4,7 +4,7 @@ import { Link } from "gatsby";
 import PageLayout from "../components/PageLayout";
 import PostList from "../components/PostList";
 
-const PostListPage = ({ data, classes , pageContext}) => {
+const PostListPage = ({ pageContext}) => {
   const seoDetails = {
     title: pageContext.title,
   };

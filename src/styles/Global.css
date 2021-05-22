@@ -10,14 +10,17 @@
   --default-font: Arial, Helvetica, sans-serif;
   --default-font-size: 1rem;
   --default-font-color: #000000;
+  --font-size-small: 0.8rem;
 
   /* links */
   --link-color: #5555BB;
   --link-text-decoration: none;
 
   /* spacing */
-  --padding-small: 5px;
-  --padding-medium: 10px;
+  --padding-xsmall: 0.5rem;
+  --padding-small: 1rem;
+  --padding-medium: 2rem;
+  --padding-large: 3rem;
 
   /* lists */
   --navigation-list-style: none;
@@ -40,11 +43,15 @@ body {
   margin: 0;
 }
 
+h3 {
+  margin: var(--padding-small) 0 var(--padding-xsmall) 0;
+}
+
 ul {
   padding-inline-start: var(--padding-small);
   list-style-position: inside;
 }
 
 .containerPadded {
-  padding: var(--padding-small);
+  padding: 0 var(--padding-small);
 }

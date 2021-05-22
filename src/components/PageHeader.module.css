@@ -5,6 +5,10 @@
   justify-content: space-between;
 }
 
+.container ul {
+  padding-inline-start: 0;
+}
+
 .navigationLinks {
   list-style: var(--navigation-list-style);
   margin-left: var(--padding-medium);
@@ -13,5 +17,8 @@
 
 .navigationLink {
   display: inline-block;
+}
+
+.navigationLink:not(:last-child) {
   margin-right: var(--padding-small);
 }

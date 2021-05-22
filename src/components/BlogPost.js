@@ -11,11 +11,11 @@ export default function BlogPost({ post, fullText = true, showMeta = true }) {
       <h3><Link to={`/post/${post.frontmatter.slug}`}>{post.frontmatter.title}</Link></h3>
       {showMeta && 
         <div className={BlogPostStyles.metaContainer}>
-          <div className={BlogPostStyles.metaItem}>
+          <div>
             {post.frontmatter.date}, <Link to={`/author/${encodeURI(post.frontmatter.author)}`}>{post.frontmatter.author}</Link>
           </div>
           {post.frontmatter.tags && post.frontmatter.tags.length > 0 &&
-            <div className={BlogPostStyles.metaItem}>
+            <div>
               Tagged {makeTagLinks({ tags: post.frontmatter.tags })}
             </div>
           }

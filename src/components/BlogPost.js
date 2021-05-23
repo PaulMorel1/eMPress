@@ -16,7 +16,7 @@ export default function BlogPost({ post, fullText = true, showMeta = true }) {
           </div>
           {post.frontmatter.tags && post.frontmatter.tags.length > 0 &&
             <div>
-              Tagged {makeTagLinks({ tags: post.frontmatter.tags })}
+              {makeTagLinks({ tags: post.frontmatter.tags })}
             </div>
           }
         </div>     

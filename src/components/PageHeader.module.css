@@ -5,13 +5,24 @@
   justify-content: space-between;
 }
 
+@media only screen and (max-width: 640px) {
+  .container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.container h1 {
+  margin: 0;
+  padding: 0;
+}
+
 .container ul {
   padding-inline-start: 0;
 }
 
 .navigationLinks {
   list-style: var(--navigation-list-style);
-  margin-left: var(--padding-medium);
   text-align: right;
 }
 

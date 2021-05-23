@@ -1,8 +1,15 @@
 .pageContainer {
   position: relative;
   background-color: var(--page-background-color);
-  max-width: var(--page-max-width);
+  width: 100%;
   min-height: 100vh;
+  padding: 0;
+  margin: 0;
+}
+
+.innerContainer {
   margin: 0 auto;
   padding: 0 var(--padding-small);
+  max-width: var(--page-max-width);
+  background-color: var(--content-background-color);
 }

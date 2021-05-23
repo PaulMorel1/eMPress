@@ -9,12 +9,14 @@ import Seo from "./Seo";
 export default function PageLayout(props) {
   return (
     <div className={PageLayoutStyles.pageContainer}>
-      <Seo {...props.seo} />
-      <PageHeader />
-      <main>
-        {props.children}
-      </main>
-      <PageFooter />      
+      <div className={PageLayoutStyles.innerContainer}>
+        <Seo {...props.seo} />
+        <PageHeader />
+        <main>
+          {props.children}
+        </main>
+        <PageFooter />
+      </div>
     </div>
   );
 }

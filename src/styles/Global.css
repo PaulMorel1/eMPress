@@ -4,7 +4,8 @@
 
   /* page */
   --page-max-width: 800px;
-  --page-background-color: #FFF;
+  --page-background-color: #F5F5F5;
+  --content-background-color: #FFF;
 
   /* fonts */
   --default-font: Verdana, Helvetica, Arial, sans-serif;
@@ -28,7 +29,6 @@
 
 html {
   background-color: var(--html-background-color);
-
   font-family: var(--default-font);
   font-size: var(--default-font-size);
   color: var(--default-font-color);
@@ -37,10 +37,12 @@ html {
 a, a.visited {
   color: var(--link-color);
   text-decoration: var(--link-text-decoration);
+  word-break: break-all;
 }
 
 body {
   margin: 0;
+  padding: 0;
 }
 
 h1, h2, h3, h4, h5 {

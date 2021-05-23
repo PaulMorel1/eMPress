@@ -4,7 +4,6 @@ slug: "how-to-register-a-domain-on-aws-route-53"
 date: "2021-05-23"
 author: "Evan"
 published: true
-featured: { image: ../images/register_domain_on_aws_route_53.jpg }
 tags: 
   - domain
   - aws
@@ -14,8 +13,6 @@ tags:
 ---
 
 To register a new domain using AWS, you must use a service called Route 53.
-
-![Registering a new domain using AWS Route 53](../images/register_domain_on_aws_route_53.jpg)
 
 1. Log into AWS management console at [https://aws.amazon.com/console/](https://aws.amazon.com/console/).
 2. Find the service Route 53 and click it.

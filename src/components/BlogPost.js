@@ -4,15 +4,16 @@ import { Link } from "gatsby";
 import "../styles/Global.css";
 import * as BlogPostStyles from "./BlogPost.module.css";
 import makeTagLinks from "../helpers/makeTagLinks.js";
+import makeSlug from "../helpers/makeSlug.js";
 
 export default function BlogPost({ post, fullText = true, showMeta = true }) {
   return (
     <div className={BlogPostStyles.blogPostContainer}>
-      <h3><Link to={`/post/${post.frontmatter.slug}`}>{post.frontmatter.title}</Link></h3>
+      <h3><Link to={`/post/${makeSlug(post.frontmatter.slug)}`}>{post.frontmatter.title}</Link></h3>
       {showMeta && 
         <div className={BlogPostStyles.metaContainer}>
           <div>
-            {post.frontmatter.date}, <Link to={`/author/${encodeURI(post.frontmatter.author)}`}>{post.frontmatter.author}</Link>
+            {post.frontmatter.date}, <Link to={`/author/${makeSlug(post.frontmatter.author)}`}>{post.frontmatter.author}</Link>
           </div>
           {post.frontmatter.tags && post.frontmatter.tags.length > 0 &&
             <div>
@@ -29,7 +30,7 @@ export default function BlogPost({ post, fullText = true, showMeta = true }) {
       }
       {(!fullText || !post.html) && 
         <p>
-          <Link to={`/post/${post.frontmatter.slug}`}>Read full article</Link>
+          <Link to={`/post/${makeSlug(post.frontmatter.slug)}`}>Read full article</Link>
         </p>
       }
     </div>

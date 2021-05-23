@@ -1,4 +1,5 @@
 const path = require("path");
+const makeSlug = require("./src/helpers/makeSlug.js");
 
 /**
  * Add a field to each markdown file to indicate which 
@@ -85,7 +86,7 @@ exports.createPages = async({ graphql, actions }) => {
   // loop through each page and create the pages
   result.data.pages.edges.forEach(({ node }) => {
     createPage({
-      path: `/${node.frontmatter.slug}`,
+      path: `/${makeSlug(node.frontmatter.slug)}`,
       component: path.resolve('./src/templates/blog-page.js'),
       context: {
         slug: node.frontmatter.slug,
@@ -100,7 +101,7 @@ exports.createPages = async({ graphql, actions }) => {
   // loop through each post and create the post pages
   result.data.posts.edges.forEach(({ node }) => {
     createPage({
-      path: `/post/${node.frontmatter.slug}`,
+      path: `/post/${makeSlug(node.frontmatter.slug)}`,
       component: path.resolve('./src/templates/blog-post-page.js'),
       context: {
         slug: node.frontmatter.slug,
@@ -155,22 +156,23 @@ exports.createPages = async({ graphql, actions }) => {
   // Loop through each tag map and create list pages for each
   for(let tag in taggedPosts) {
     let totalPosts = taggedPosts[tag].length;
-    const numPages = Math.max(Math.ceil(totalPosts / postsPerPage), 1)
+    const numPages = Math.max(Math.ceil(totalPosts / postsPerPage), 1);
+    const slug = makeSlug(tag);
 
     // paginate the posts for this tag
     for(let i = 0; i < numPages; i++) {
       const currentPage = i + 1
 
       createPage({
-        path: i === 0 ? `/tag/${tag}` : `/tag/${tag}/${currentPage}`,
+        path: i === 0 ? `/tag/${slug}` : `/tag/${slug}/${currentPage}`,
         component: path.resolve('./src/templates/post-list-page.js'),
         context: {
-          title: `Posts Tagged "${tag}"`,
+          title: `Posts Tagged "${slug}"`,
           posts: {
             edges: taggedPosts[tag].slice(i * postsPerPage, (i + 1) * postsPerPage),
           },
-          nextPage: i < numPages - 1 ? `/tag/${tag}/${currentPage + 1}` : null,
-          previousPage: i > 1 ? `/tag/${tag}/${currentPage - 1}` : (i === 1 ? `/tag/${tag}` : null),
+          nextPage: i < numPages - 1 ? `/tag/${slug}/${currentPage + 1}` : null,
+          previousPage: i > 1 ? `/tag/${slug}/${currentPage - 1}` : (i === 1 ? `/tag/${slug}` : null),
           fullText: false,
         }
       });
@@ -180,12 +182,13 @@ exports.createPages = async({ graphql, actions }) => {
   // Loop through each author map and create list pages for each
   for(let author in authorPosts) {
     let totalPosts = authorPosts[author].length;
-    const numPages = Math.max(Math.ceil(totalPosts / postsPerPage), 1)
+    const numPages = Math.max(Math.ceil(totalPosts / postsPerPage), 1);
+    const slug = makeSlug(author);
 
     // paginate the posts for this tag
     for(let i = 0; i < numPages; i++) {
       const currentPage = i + 1
-      const pathPrefix = `/author/${author}`;
+      const pathPrefix = `/author/${slug}`;
 
       createPage({
         path: i === 0 ? pathPrefix : `${pathPrefix}/${currentPage}`,

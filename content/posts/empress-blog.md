@@ -1,7 +1,7 @@
 ---
 title: "Introducing the Empress Blog"
 slug: "introducing-the-empress-blog"
-date: "2021-04-18"
+date: "2021-05-25"
 author: "Evan X. Merz"
 published: true
 tags: 

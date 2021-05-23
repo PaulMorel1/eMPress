@@ -2,7 +2,7 @@
 title: "How to Register a Domain on AWS Route 53"
 slug: "how-to-register-a-domain-on-aws-route-53"
 date: "2021-05-23"
-author: "Evan"
+author: "Evan X. Merz"
 published: true
 tags: 
   - domain

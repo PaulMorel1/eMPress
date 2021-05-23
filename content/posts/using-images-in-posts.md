@@ -2,7 +2,7 @@
 title: "Using Images in Posts"
 slug: "using-images-in-posts"
 date: "2021-05-22"
-author: "Evan"
+author: "Evan X. Merz"
 published: true
 featured: { image: ../images/david-clode-13PjNBaDMcg-unsplash.jpg }
 tags: 

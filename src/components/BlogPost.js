@@ -6,10 +6,11 @@ import * as BlogPostStyles from "./BlogPost.module.css";
 import makeTagLinks from "../helpers/makeTagLinks.js";
 import makeSlug from "../helpers/makeSlug.js";
 
-export default function BlogPost({ post, fullText = true, showMeta = true }) {
+export default function BlogPost({ post, fullText = true, showMeta = true, type = 'post' }) {
+  const titleLink = type === 'post' ? `/post/${makeSlug(post.frontmatter.slug)}` : `/${makeSlug(post.frontmatter.slug)}`;
   return (
     <div className={BlogPostStyles.blogPostContainer}>
-      <h3><Link to={`/post/${makeSlug(post.frontmatter.slug)}`}>{post.frontmatter.title}</Link></h3>
+      <h3><Link to={titleLink}>{post.frontmatter.title}</Link></h3>
       {showMeta && 
         <div className={BlogPostStyles.metaContainer}>
           <div>

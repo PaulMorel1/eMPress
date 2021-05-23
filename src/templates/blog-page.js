@@ -13,7 +13,7 @@ const BlogPage = ({ data }) => {
 
   return (
     <PageLayout seo={seoDetails}>
-      <BlogPost post={post} fullText={true} showMeta={false} />
+      <BlogPost post={post} fullText={true} showMeta={false} type='page' />
     </PageLayout>
   )
 };
@@ -34,6 +34,7 @@ export const query = graphql`
         title
         date(formatString: "DD MMMM, YYYY")
         author
+        slug
       }
     }
   }

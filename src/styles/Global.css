@@ -46,20 +46,34 @@ body {
 }
 
 h1, h2, h3, h4, h5 {
+  margin: 0;
+  padding: 0;
   font-weight: 400;
 }
 
-h1 {
-  margin: var(--padding-medium) 0 var(--padding-xsmall) 0;
+h1, h2 {
+  margin: 0;
+  padding: var(--padding-medium) 0 var(--padding-xsmall) 0;
 }
 
-h3 {
-  margin: var(--padding-small) 0 var(--padding-xsmall) 0;
+h3, h4, h5 {
+  margin: 0;
+  padding: var(--padding-small) 0 var(--padding-xsmall) 0;
 }
 
 ul {
   padding-inline-start: var(--padding-small);
   list-style-position: inside;
+}
+
+/*
+  This container individually wraps each vertical section of a page.
+*/
+.contentContainer {
+  margin: 0 auto;
+  padding: 0 var(--padding-small);
+  max-width: var(--page-max-width);
+  background-color: var(--content-background-color);
 }
 
 .containerPadded {

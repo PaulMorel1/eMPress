@@ -1,0 +1,62 @@
+name: Build and Deploy
+
+# from https://dev.to/kleeut/deploying-gatsby-to-s3-my-first-time-with-github-actions-11ga
+
+# You must set the following secrets on GitHub:
+# secrets.AWSACCESSKEYID
+# secrets.AWSSECRET
+# secrets.AWSREGION
+# secrets.BUCKET
+
+# The first two refer to the IAM user who will do the upload.
+# You must add an access key id and secret from that user.
+
+# The AWSREGION should be set to whatever region your bucket is in.
+
+# The BUCKET secret should be set to the name of your bucket.
+
+# Run this every time a new commit is pushed
+on: push
+
+jobs:
+  build:
+    if: github.ref == 'refs/heads/master' # only run on pushes to the master branch
+    name: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "12"
+
+      - name: yarn install
+        run: yarn install
+      - name: yarn build
+        run: yarn build
+      - name: zip build
+        run: tar -czvf build.tar.gz public
+      - name: archive zip
+        uses: actions/upload-artifact@v2
+        with:
+          name: build
+          path: build.tar.gz
+  deploy:
+    needs:
+      - build
+    name: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: build
+      - name: extract build
+        run: tar -xzvf build.tar.gz
+      - name: Set AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWSACCESSKEYID }}
+          aws-secret-access-key: ${{ secrets.AWSSECRET }}
+          aws-region: ${{ secrets.AWSREGION }}
+      - name: Deploy to S3
+        run: aws s3 sync ./public s3://${{ secrets.BUCKET }} --acl public-read

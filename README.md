@@ -1,19 +1,14 @@
 # Empress
 
-Full featured Gatsby blog starter that allows you to focus on your blog, rather than your code.
+Full featured Gatsby blog starter that allows you to run a fast static blog as cheaply as possible.
 
 Created by Evan X. Merz.
 
-## Philosophy
+## About
 
-The name comes from M-Press, which stands for 
-Modern, or Minimalist, press. I
-originally started this project as a modern, 
-static alternative to WordPress that I could 
-host for as close to free as possible on AWS.
-The goal is a blog for the 21st
-century that has all the core features of a 
-static blog, without any bloat.
+This is essentially a feature complete static blog starter based on the Gatsby tutorial. So if you finished the Gatsby tutorial and you think Gatsby is great, but you don't want to waste time re-inventing basic features like tags, then this might be the right starter for you.
+
+The goal is a blog for the 21st century that has all the core features of a static blog, without any bloat.
 
 ### But why no SASS? Styled Components? Typography?
 
@@ -40,13 +35,12 @@ the following things.
 - Menus
 - Markdown posts
 - Themes
-- TODO: Automatic deployment to AWS
+- Automatic deployment to AWS
 - TODO: Google Analytics
-
 
 ## Development
 
-It's a minimalist gatsby project.
+It's a minimalist gatsby project, so you can run it using the same npm commands you'd use to run any Node.js project.
 
 ```
 npm install
@@ -61,7 +55,7 @@ npm run build
 
 ## Deploy on AWS using GitHub Actions
 
-If you are using the built-in GitHub Actions integration, then just commit your new stuff and push to master on GitHub.
+If you are using the built-in GitHub Actions integration, then just commit your new stuff and push to master on GitHub. Make sure you go through the setup on AWS and GitHub. You must create a public S3 bucket and a CloudFront distribution then save secret keys into your repo settings on GitHub.
 
 ## Deploy using Gatsby Cloud
 

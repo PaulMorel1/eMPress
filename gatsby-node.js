@@ -115,7 +115,7 @@ exports.createPages = async({ graphql, actions }) => {
 
     // make the pages that will be redirected to this post
     if(node.frontmatter.redirects) {
-      node.frontmatter.redirects?.forEach((url) => {
+      node.frontmatter.redirects.forEach((url) => {
         createPage({
           path: `/${url}`,
           component: path.resolve('./src/templates/redirect-page.js'),

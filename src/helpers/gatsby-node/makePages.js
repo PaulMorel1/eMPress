@@ -20,16 +20,18 @@ const makePages = ({ createPage, pages }) => {
     });
 
     // make the redirects to this page
-    node.frontmatter.redirects?.forEach((url) => {
-      createPage({
-        path: `/${url}`,
-        component: path.resolve('./src/templates/redirect-page.js'),
-        context: {
-          from: `/${url}`,
-          to: pagePath,
-        }
+    if(node.frontmatter.redirects) {
+      node.frontmatter.redirects.forEach((url) => {
+        createPage({
+          path: `/${url}`,
+          component: path.resolve('./src/templates/redirect-page.js'),
+          context: {
+            from: `/${url}`,
+            to: pagePath,
+          }
+        });
       });
-    });
+    }
   });
 };
 

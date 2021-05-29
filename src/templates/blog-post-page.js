@@ -36,6 +36,7 @@ export const query = graphql`
         author
         tags
         slug
+        pinned
       }
     }
   }

@@ -1,5 +1,6 @@
 const path = require("path");
 const makeSlug = require("./src/helpers/makeSlug.js");
+const makePages = require("./src/helpers/gatsby-node/makePages.js");
 
 /**
  * Add a field to each markdown file to indicate which 
@@ -124,24 +125,6 @@ exports.createPages = async({ graphql, actions }) => {
   makeTagListPages({ createPage, taggedPosts, postsPerPage });
 
   makeAuthorListPages({ createPage, authorPosts, postsPerPage });
-};
-
-// This makes the pages defined in content\pages
-const makePages = ({ createPage, pages }) => {
-  if(!pages || !createPage) {
-    return null;
-  }
-
-  // loop through each page and create the pages
-  pages.edges.forEach(({ node }) => {
-    createPage({
-      path: `/${makeSlug(node.frontmatter.slug)}`,
-      component: path.resolve('./src/templates/blog-page.js'),
-      context: {
-        slug: node.frontmatter.slug,
-      }
-    });
-  });
 };
 
 // This method loops through each post and paginates them from the homepage in date order

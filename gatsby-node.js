@@ -83,16 +83,7 @@ exports.createPages = async({ graphql, actions }) => {
     }
   `);
 
-  // loop through each page and create the pages
-  result.data.pages.edges.forEach(({ node }) => {
-    createPage({
-      path: `/${makeSlug(node.frontmatter.slug)}`,
-      component: path.resolve('./src/templates/blog-page.js'),
-      context: {
-        slug: node.frontmatter.slug,
-      }
-    });
-  });
+  makePages({ createPage, pages: result.data.pages });
 
   // These lists will be used for list pages
   let taggedPosts = [];
@@ -205,4 +196,22 @@ exports.createPages = async({ graphql, actions }) => {
       });
     }   
   }
+};
+
+// This makes the pages defined in content\pages
+const makePages = ({ createPage, pages }) => {
+  if(!pages || !createPage) {
+    return null;
+  }
+
+  // loop through each page and create the pages
+  pages.edges.forEach(({ node }) => {
+    createPage({
+      path: `/${makeSlug(node.frontmatter.slug)}`,
+      component: path.resolve('./src/templates/blog-page.js'),
+      context: {
+        slug: node.frontmatter.slug,
+      }
+    });
+  });
 };

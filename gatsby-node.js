@@ -114,25 +114,29 @@ exports.createPages = async({ graphql, actions }) => {
     });
 
     // make the pages that will be redirected to this post
-    node.frontmatter.redirects?.forEach((url) => {
-      createPage({
-        path: `/${url}`,
-        component: path.resolve('./src/templates/redirect-page.js'),
-        context: {
-          from: `/${url}`,
-          to: postPath,
-        }
+    if(node.frontmatter.redirects) {
+      node.frontmatter.redirects?.forEach((url) => {
+        createPage({
+          path: `/${url}`,
+          component: path.resolve('./src/templates/redirect-page.js'),
+          context: {
+            from: `/${url}`,
+            to: postPath,
+          }
+        });
       });
-    });
+    }
 
     // Store each tag in a hash. This may not be scalable.
-    node.frontmatter.tags?.forEach((tag) => {
-      if(!taggedPosts[tag]) {
-        taggedPosts[tag] = [{ node }];
-      } else {
-        taggedPosts[tag].push({ node });
-      }
-    });
+    if(node.frontmatter.tags) {
+      node.frontmatter.tags.forEach((tag) => {
+        if(!taggedPosts[tag]) {
+          taggedPosts[tag] = [{ node }];
+        } else {
+          taggedPosts[tag].push({ node });
+        }
+      });
+    }
 
     // store each post under the author name
     if(node.frontmatter.author) {

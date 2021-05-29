@@ -59,11 +59,12 @@ exports.createPages = async({ graphql, actions }) => {
       }
       posts: allMarkdownRemark(
         sort: { 
-          fields: [frontmatter___date], order: DESC 
+          fields: [frontmatter___pinned, frontmatter___date], 
+          order: [ASC, DESC] 
         },
         filter: { 
           frontmatter: {
-            published: {eq: true} 
+            published: {eq: true}
           }, 
           fields: { 
             collection: {eq: "posts"}
@@ -80,6 +81,7 @@ exports.createPages = async({ graphql, actions }) => {
               slug
               tags
               redirects
+              pinned
             }
             html
             excerpt
@@ -138,6 +140,15 @@ exports.createPages = async({ graphql, actions }) => {
         authorPosts[node.frontmatter.author] = [{ node }];
       } else {
         authorPosts[node.frontmatter.author].push({ node });
+      }
+    }
+
+    // Store each pinned post in a tag list named "pinned"
+    if(node.frontmatter.pinned) {
+      if(!taggedPosts["pinned"]) {
+        taggedPosts["pinned"] = [{ node }];
+      } else {
+        taggedPosts["pinned"].push({ node });
       }
     }
   });

@@ -7,6 +7,7 @@ redirects:
 date: "2021-05-25"
 author: "Evan X. Merz"
 published: true
+pinned: true
 tags: 
   - about
   - introduction

@@ -14,7 +14,8 @@ export default function BlogPost({ post, fullText = true, showMeta = true, type 
       {showMeta && 
         <div className={BlogPostStyles.metaContainer}>
           <div>
-            {post.frontmatter.date}, <Link to={`/author/${makeSlug(post.frontmatter.author)}`}>{post.frontmatter.author}</Link>
+          {post.frontmatter.pinned ? <Link to={`/tag/pinned`}>pinned</Link> : post.frontmatter.date},
+          &nbsp;<Link to={`/author/${makeSlug(post.frontmatter.author)}`}>{post.frontmatter.author}</Link>
           </div>
           {post.frontmatter.tags && post.frontmatter.tags.length > 0 &&
             <div>

@@ -1,6 +1,9 @@
 const path = require("path");
 const makeSlug = require("./src/helpers/makeSlug.js");
 const makePages = require("./src/helpers/gatsby-node/makePages.js");
+const makeTagListPages = require("./src/helpers/gatsby-node/makeTagListPages.js");
+const makeAuthorListPages = require("./src/helpers/gatsby-node/makeAuthorListPages.js");
+const makePaginatedIndex = require("./src/helpers/gatsby-node/makePaginatedIndex.js");
 
 /**
  * Add a field to each markdown file to indicate which 
@@ -125,88 +128,4 @@ exports.createPages = async({ graphql, actions }) => {
   makeTagListPages({ createPage, taggedPosts, postsPerPage });
 
   makeAuthorListPages({ createPage, authorPosts, postsPerPage });
-};
-
-// This method loops through each post and paginates them from the homepage in date order
-const makePaginatedIndex = ({ createPage, posts, postsPerPage = 5 }) => {
-  // calculate the number of pages
-  let allPosts = posts.edges;
-  let totalPosts = allPosts.length;
-  const numPages = Math.max(Math.ceil(totalPosts / postsPerPage), 1)
-
-  // for each page, create a list page with the posts that belong on that page
-  for(let i = 0; i < numPages; i++) {
-    const currentPage = i + 1
-
-    createPage({
-      path: i === 0 ? `/` : `/posts/${currentPage}`,
-      component: path.resolve('./src/templates/post-list-page.js'),
-      context: {
-        title: null,
-        posts: {
-          edges: allPosts.slice(i * postsPerPage, (i + 1) * postsPerPage),
-        },
-        nextPage: i < numPages - 1 ? `/posts/${currentPage + 1}` : null,
-        previousPage: i > 1 ? `/posts/${currentPage - 1}` : (i === 1 ? `/` : null),
-        fullText: true,
-      }
-    });
-  }
-};
-
-// Loop through each tag map and create list pages for each
-const makeTagListPages = ({ createPage, taggedPosts, postsPerPage }) => {
-  for(let tag in taggedPosts) {
-    let totalPosts = taggedPosts[tag].length;
-    const numPages = Math.max(Math.ceil(totalPosts / postsPerPage), 1);
-    const slug = makeSlug(tag);
-
-    // paginate the posts for this tag
-    for(let i = 0; i < numPages; i++) {
-      const currentPage = i + 1
-
-      createPage({
-        path: i === 0 ? `/tag/${slug}` : `/tag/${slug}/${currentPage}`,
-        component: path.resolve('./src/templates/post-list-page.js'),
-        context: {
-          title: `Posts Tagged "${slug}"`,
-          posts: {
-            edges: taggedPosts[tag].slice(i * postsPerPage, (i + 1) * postsPerPage),
-          },
-          nextPage: i < numPages - 1 ? `/tag/${slug}/${currentPage + 1}` : null,
-          previousPage: i > 1 ? `/tag/${slug}/${currentPage - 1}` : (i === 1 ? `/tag/${slug}` : null),
-          fullText: false,
-        }
-      });
-    }
-  }
-};
-
-// Loop through each author map and create list pages for each
-const makeAuthorListPages = ({ createPage, authorPosts, postsPerPage }) => {
-  for(let author in authorPosts) {
-    let totalPosts = authorPosts[author].length;
-    const numPages = Math.max(Math.ceil(totalPosts / postsPerPage), 1);
-    const slug = makeSlug(author);
-
-    // paginate the posts for this author
-    for(let i = 0; i < numPages; i++) {
-      const currentPage = i + 1
-      const pathPrefix = `/author/${slug}`;
-
-      createPage({
-        path: i === 0 ? pathPrefix : `${pathPrefix}/${currentPage}`,
-        component: path.resolve('./src/templates/post-list-page.js'),
-        context: {
-          title: `Posts Written by "${author}"`,
-          posts: {
-            edges: authorPosts[author].slice(i * postsPerPage, (i + 1) * postsPerPage),
-          },
-          nextPage: i < numPages - 1 ? `${pathPrefix}/${currentPage + 1}` : null,
-          previousPage: i > 1 ? `${pathPrefix}/${currentPage - 1}` : (i === 1 ? pathPrefix : null),
-          fullText: false,
-        }
-      });
-    }   
-  }
 };

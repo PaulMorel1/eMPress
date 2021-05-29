@@ -1,11 +1,12 @@
 :root {
-  /* html */
+  /* colors */
   --html-background-color: #F5F5F5;
+  --page-background-color: #F5F5F5;
+  --content-background-color: #FFF;
+  --tag-background-color: #EEE;
 
   /* page */
   --page-max-width: 800px;
-  --page-background-color: #F5F5F5;
-  --content-background-color: #FFF;
 
   /* fonts */
   --default-font: Verdana, Helvetica, Arial, sans-serif;
@@ -78,4 +79,12 @@ ul {
 
 .containerPadded {
   padding: 0 var(--padding-small);
+}
+
+.tag {
+  font-size: var(--font-size-small);
+  padding: 3px;
+  margin: 0;
+  display: inline-block;
+  background-color: var(--tag-background-color);
 }

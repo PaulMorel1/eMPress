@@ -119,30 +119,7 @@ exports.createPages = async({ graphql, actions }) => {
   // variables for pagination
   let postsPerPage = 5;
 
-  // TODO: Need to deal with invalid URL characters in tags and authors.
-
-  // create the paginated index page
-  let allPosts = result.data.posts.edges;
-  let totalPosts = allPosts.length;
-  const numPages = Math.max(Math.ceil(totalPosts / postsPerPage), 1)
-
-  for(let i = 0; i < numPages; i++) {
-    const currentPage = i + 1
-
-    createPage({
-      path: i === 0 ? `/` : `/posts/${currentPage}`,
-      component: path.resolve('./src/templates/post-list-page.js'),
-      context: {
-        title: null,
-        posts: {
-          edges: allPosts.slice(i * postsPerPage, (i + 1) * postsPerPage),
-        },
-        nextPage: i < numPages - 1 ? `/posts/${currentPage + 1}` : null,
-        previousPage: i > 1 ? `/posts/${currentPage - 1}` : (i === 1 ? `/` : null),
-        fullText: true,
-      }
-    });
-  }
+  makePaginatedIndex({ createPage, posts: result.data.posts, postsPerPage });
 
   // Loop through each tag map and create list pages for each
   for(let tag in taggedPosts) {
@@ -215,3 +192,30 @@ const makePages = ({ createPage, pages }) => {
     });
   });
 };
+
+// This method loops through each post and paginates them from the homepage in date order
+const makePaginatedIndex = ({ createPage, posts, postsPerPage = 5 }) => {
+  // calculate the number of pages
+  let allPosts = posts.edges;
+  let totalPosts = allPosts.length;
+  const numPages = Math.max(Math.ceil(totalPosts / postsPerPage), 1)
+
+  // for each page, create a list page with the posts that belong on that page
+  for(let i = 0; i < numPages; i++) {
+    const currentPage = i + 1
+
+    createPage({
+      path: i === 0 ? `/` : `/posts/${currentPage}`,
+      component: path.resolve('./src/templates/post-list-page.js'),
+      context: {
+        title: null,
+        posts: {
+          edges: allPosts.slice(i * postsPerPage, (i + 1) * postsPerPage),
+        },
+        nextPage: i < numPages - 1 ? `/posts/${currentPage + 1}` : null,
+        previousPage: i > 1 ? `/posts/${currentPage - 1}` : (i === 1 ? `/` : null),
+        fullText: true,
+      }
+    });
+  }
+}

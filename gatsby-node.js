@@ -51,6 +51,7 @@ exports.createPages = async({ graphql, actions }) => {
               date(formatString: "DD MMMM, YYYY")
               author
               slug
+              redirects
             }
             excerpt
           }
@@ -78,6 +79,7 @@ exports.createPages = async({ graphql, actions }) => {
               author
               slug
               tags
+              redirects
             }
             html
             excerpt
@@ -98,16 +100,31 @@ exports.createPages = async({ graphql, actions }) => {
 
   // loop through each post and create the post pages
   result.data.posts.edges.forEach(({ node }) => {
+    const postPath = `/post/${makeSlug(node.frontmatter.slug)}`;
+    
+    // make the page for the post itself
     createPage({
-      path: `/post/${makeSlug(node.frontmatter.slug)}`,
+      path: postPath,
       component: path.resolve('./src/templates/blog-post-page.js'),
       context: {
         slug: node.frontmatter.slug,
       }
     });
 
+    // make the pages that will be redirected to this post
+    node.frontmatter.redirects?.forEach((url) => {
+      createPage({
+        path: `/${url}`,
+        component: path.resolve('./src/templates/redirect-page.js'),
+        context: {
+          from: `/${url}`,
+          to: postPath,
+        }
+      });
+    });
+
     // Store each tag in a hash. This may not be scalable.
-    node.frontmatter.tags.forEach((tag) => {
+    node.frontmatter.tags?.forEach((tag) => {
       if(!taggedPosts[tag]) {
         taggedPosts[tag] = [{ node }];
       } else {
@@ -116,10 +133,12 @@ exports.createPages = async({ graphql, actions }) => {
     });
 
     // store each post under the author name
-    if(!authorPosts[node.frontmatter.author]) {
-      authorPosts[node.frontmatter.author] = [{ node }];
-    } else {
-      authorPosts[node.frontmatter.author].push({ node });
+    if(node.frontmatter.author) {
+      if(!authorPosts[node.frontmatter.author]) {
+        authorPosts[node.frontmatter.author] = [{ node }];
+      } else {
+        authorPosts[node.frontmatter.author].push({ node });
+      }
     }
   });
 

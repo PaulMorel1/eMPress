@@ -1,6 +1,8 @@
 ---
 title: "About Empress Blog"
 slug: "about-empress-blog"
+redirects:
+  - "about"
 date: "2021-05-16"
 author: "Evan X. Merz"
 published: true

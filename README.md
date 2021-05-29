@@ -31,11 +31,13 @@ the following things.
 
 ## Features
 
+Empress is a fully featured Gatsby blog starter.
+
 - Tags
 - Menus
-- Markdown posts
 - Themes
-- Automatic deployment to AWS
+- Deployment to AWS (S3/CloudFront)
+- Redirects
 - TODO: Google Analytics
 
 ## Development

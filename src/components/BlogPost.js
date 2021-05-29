@@ -10,11 +10,14 @@ export default function BlogPost({ post, fullText = true, showMeta = true, type 
   const titleLink = type === 'post' ? `/post/${makeSlug(post.frontmatter.slug)}` : `/${makeSlug(post.frontmatter.slug)}`;
   return (
     <div className={BlogPostStyles.blogPostContainer}>
-      <h3><Link to={titleLink}>{post.frontmatter.title}</Link></h3>
+      <h3>
+        <Link to={titleLink}>{post.frontmatter.title}</Link>
+        {post.frontmatter.pinned && <Link to={`/tag/pinned`} className={['tag', BlogPostStyles.pinned].join(' ')}>pinned</Link>}
+      </h3>
       {showMeta && 
         <div className={BlogPostStyles.metaContainer}>
           <div>
-          {post.frontmatter.pinned ? <Link to={`/tag/pinned`}>pinned</Link> : post.frontmatter.date},
+          {post.frontmatter.date},
           &nbsp;<Link to={`/author/${makeSlug(post.frontmatter.author)}`}>{post.frontmatter.author}</Link>
           </div>
           {post.frontmatter.tags && post.frontmatter.tags.length > 0 &&

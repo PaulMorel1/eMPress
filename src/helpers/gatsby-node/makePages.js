@@ -9,12 +9,26 @@ const makePages = ({ createPage, pages }) => {
 
   // loop through each page and create the pages
   pages.edges.forEach(({ node }) => {
+    const pagePath = `/${makeSlug(node.frontmatter.slug)}`;
+    
     createPage({
-      path: `/${makeSlug(node.frontmatter.slug)}`,
+      path: pagePath,
       component: path.resolve('./src/templates/blog-page.js'),
       context: {
         slug: node.frontmatter.slug,
       }
+    });
+
+    // make the redirects to this page
+    node.frontmatter.redirects?.forEach((url) => {
+      createPage({
+        path: `/${url}`,
+        component: path.resolve('./src/templates/redirect-page.js'),
+        context: {
+          from: `/${url}`,
+          to: pagePath,
+        }
+      });
     });
   });
 };

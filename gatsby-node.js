@@ -1,9 +1,13 @@
 const path = require("path");
 const makeSlug = require("./src/helpers/makeSlug.js");
+const makePages = require("./src/helpers/gatsby-node/makePages.js");
+const makeTagListPages = require("./src/helpers/gatsby-node/makeTagListPages.js");
+const makeAuthorListPages = require("./src/helpers/gatsby-node/makeAuthorListPages.js");
+const makePaginatedIndex = require("./src/helpers/gatsby-node/makePaginatedIndex.js");
 
 /**
  * Add a field to each markdown file to indicate which 
- * collection it belongs to. Posts or pages?
+ * collection it belongs to. Posts or pages or something else?
  * 
  * See https://georgenance.com/dont-use-frontmatter-markdown-files-gatsby
  */
@@ -83,20 +87,14 @@ exports.createPages = async({ graphql, actions }) => {
     }
   `);
 
-  // loop through each page and create the pages
-  result.data.pages.edges.forEach(({ node }) => {
-    createPage({
-      path: `/${makeSlug(node.frontmatter.slug)}`,
-      component: path.resolve('./src/templates/blog-page.js'),
-      context: {
-        slug: node.frontmatter.slug,
-      }
-    });
-  });
+  makePages({ createPage, pages: result.data.pages });
 
   // These lists will be used for list pages
   let taggedPosts = [];
   let authorPosts = [];
+
+  // variables for pagination
+  const postsPerPage = 5;
 
   // loop through each post and create the post pages
   result.data.posts.edges.forEach(({ node }) => {
@@ -125,84 +123,9 @@ exports.createPages = async({ graphql, actions }) => {
     }
   });
 
-  // variables for pagination
-  let postsPerPage = 5;
+  makePaginatedIndex({ createPage, posts: result.data.posts, postsPerPage });
 
-  // TODO: Need to deal with invalid URL characters in tags and authors.
+  makeTagListPages({ createPage, taggedPosts, postsPerPage });
 
-  // create the paginated index page
-  let allPosts = result.data.posts.edges;
-  let totalPosts = allPosts.length;
-  const numPages = Math.max(Math.ceil(totalPosts / postsPerPage), 1)
-
-  for(let i = 0; i < numPages; i++) {
-    const currentPage = i + 1
-
-    createPage({
-      path: i === 0 ? `/` : `/posts/${currentPage}`,
-      component: path.resolve('./src/templates/post-list-page.js'),
-      context: {
-        title: null,
-        posts: {
-          edges: allPosts.slice(i * postsPerPage, (i + 1) * postsPerPage),
-        },
-        nextPage: i < numPages - 1 ? `/posts/${currentPage + 1}` : null,
-        previousPage: i > 1 ? `/posts/${currentPage - 1}` : (i === 1 ? `/` : null),
-        fullText: true,
-      }
-    });
-  }
-
-  // Loop through each tag map and create list pages for each
-  for(let tag in taggedPosts) {
-    let totalPosts = taggedPosts[tag].length;
-    const numPages = Math.max(Math.ceil(totalPosts / postsPerPage), 1);
-    const slug = makeSlug(tag);
-
-    // paginate the posts for this tag
-    for(let i = 0; i < numPages; i++) {
-      const currentPage = i + 1
-
-      createPage({
-        path: i === 0 ? `/tag/${slug}` : `/tag/${slug}/${currentPage}`,
-        component: path.resolve('./src/templates/post-list-page.js'),
-        context: {
-          title: `Posts Tagged "${slug}"`,
-          posts: {
-            edges: taggedPosts[tag].slice(i * postsPerPage, (i + 1) * postsPerPage),
-          },
-          nextPage: i < numPages - 1 ? `/tag/${slug}/${currentPage + 1}` : null,
-          previousPage: i > 1 ? `/tag/${slug}/${currentPage - 1}` : (i === 1 ? `/tag/${slug}` : null),
-          fullText: false,
-        }
-      });
-    }
-  }
-
-  // Loop through each author map and create list pages for each
-  for(let author in authorPosts) {
-    let totalPosts = authorPosts[author].length;
-    const numPages = Math.max(Math.ceil(totalPosts / postsPerPage), 1);
-    const slug = makeSlug(author);
-
-    // paginate the posts for this tag
-    for(let i = 0; i < numPages; i++) {
-      const currentPage = i + 1
-      const pathPrefix = `/author/${slug}`;
-
-      createPage({
-        path: i === 0 ? pathPrefix : `${pathPrefix}/${currentPage}`,
-        component: path.resolve('./src/templates/post-list-page.js'),
-        context: {
-          title: `Posts Written by "${author}"`,
-          posts: {
-            edges: authorPosts[author].slice(i * postsPerPage, (i + 1) * postsPerPage),
-          },
-          nextPage: i < numPages - 1 ? `${pathPrefix}/${currentPage + 1}` : null,
-          previousPage: i > 1 ? `${pathPrefix}/${currentPage - 1}` : (i === 1 ? pathPrefix : null),
-          fullText: false,
-        }
-      });
-    }   
-  }
+  makeAuthorListPages({ createPage, authorPosts, postsPerPage });
 };

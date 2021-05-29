@@ -15,6 +15,8 @@ name: Build and Deploy
 
 # The BUCKET secret should be set to the name of your bucket.
 
+# ALTERNATIVELY, you might try https://www.gatsbyjs.com/plugins/gatsby-plugin-s3/
+
 # Run this every time a new commit is pushed
 on: push
 

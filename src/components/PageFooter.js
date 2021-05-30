@@ -1,6 +1,6 @@
 import React from "react";
 import { StaticQuery, graphql } from "gatsby";
-import "../styles/Global.css";
+
 import * as PageFooterStyles from "./PageFooter.module.css";
 import makeMenuItems from "../helpers/makeMenuItems.js";
 

@@ -1,0 +1,31 @@
+/* The name of this css class MUST be the name of the theme. */
+.dark {
+  /* colors */
+  --html-background-color: #222;
+  --page-background-color: #222;
+  --content-background-color: #555;
+  --tag-background-color: #333;
+  --default-font-color: #DDD;
+  --link-color: #FCFCFC;
+
+  /* page */
+  --page-max-width: 800px;
+
+  /* fonts */
+  --default-font: Verdana, Helvetica, Arial, sans-serif;
+  --default-font-size: 1rem;
+  --font-size-small: 0.8rem;
+
+  /* links */
+  
+  --link-text-decoration: none;
+
+  /* spacing */
+  --padding-xsmall: 0.5rem;
+  --padding-small: 1rem;
+  --padding-medium: 2rem;
+  --padding-large: 3rem;
+
+  /* lists */
+  --navigation-list-style: none;
+}

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, StaticQuery, graphql } from "gatsby";
-import "../styles/Global.css";
+
 import * as PageHeaderStyles from "./PageHeader.module.css";
 import PageHeaderMenu from "./PageHeaderMenu.js";
 

@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "gatsby";
 
-import "../styles/Global.css";
 import * as BlogPostStyles from "./BlogPost.module.css";
 import makeTagLinks from "../helpers/makeTagLinks.js";
 import makeSlug from "../helpers/makeSlug.js";

@@ -14,11 +14,9 @@ const ThemeSelector = ({ theme = DEFAULT_THEME }) => {
   const Theme = React.lazy(() => import(`./${theme}.js`));
 
   return (
-    <>
-      <React.Suspense fallback={<></>}>
-        <Theme />
-      </React.Suspense>
-    </>
+    <React.Suspense fallback={<></>}>
+      <Theme />
+    </React.Suspense>
   )
 }
 

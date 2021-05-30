@@ -8,7 +8,7 @@ import * as PageLayoutStyles from "./PageLayout.module.css";
 import PageHeader from "./PageHeader";
 import PageFooter from "./PageFooter";
 import Seo from "./Seo";
-import ThemeSelector from "../styles/themes/themeSelector";
+import Themes from "../styles/themes/themes"; // This is needed to pick up the theme css.
 
 export default function PageLayout(props) {
   // Fetch site meta data including theme
@@ -24,10 +24,11 @@ export default function PageLayout(props) {
     `,
   );
 
+  const theme = site.siteMetadata.theme || "default";
+
   return (
     <div className={[PageLayoutStyles.outerContainer, site.siteMetadata.theme].join(' ')}>
       <Seo {...props.seo} />
-      <ThemeSelector theme={site.siteMetadata.theme} />
       <PageHeader />
       <div className='contentContainer'>
         <main>

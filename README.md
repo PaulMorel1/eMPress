@@ -68,11 +68,12 @@ Deploy this starter with one click on [Gatsby Cloud](https://www.gatsbyjs.com/cl
 
 ## How to make a new theme?
 
-Creating a new theme requires 2 files. See `src\styles\themes\dark.css` and `src\styles\themes\dark.js` for examples.
+See `src\styles\themes\dark.css` for example.
 
-1. Copy `dark.css` and `dark.js` into new files. The new files MUST be named the same as your theme name. So if your theme name is `marks-dark-theme` then rename the files to `marks-dark-theme.css` and `marks-dark-theme.js`. It's important to update the css import in the js file to point to your new theme.
-2. Update the css file. Add the new rules for your theme.
-3. Modify `gatsby-config.js`. Update `siteMetadata.theme` to match your new theme name. So if your theme name is `marks-dark-theme` then you should set theme to `marks-dark-theme`.
+1. Copy `dark.css` into a new file.
+2. Update the css file. Add the new rules for your theme. The class name at the top is the name of your theme.
+3. Modify `src\styles\themes\themes.js`. Add the import for your new theme.
+4. Modify `gatsby-config.js`. Update `siteMetadata.theme` to match your new theme name. So if your theme name is `marks-dark-theme` then you should set theme to `marks-dark-theme`.
 
 ## License
 

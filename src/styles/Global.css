@@ -84,7 +84,6 @@ ul {
 .tag {
   font-size: var(--font-size-small);
   padding: 3px;
-  margin: 0;
   display: inline-block;
   background-color: var(--tag-background-color);
 }

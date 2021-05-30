@@ -23,4 +23,5 @@
 
 .pinned {
   margin: 0 var(--padding-xsmall);
+  display: inline-block;
 }

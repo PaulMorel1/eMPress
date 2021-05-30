@@ -4,6 +4,8 @@
   --page-background-color: #F5F5F5;
   --content-background-color: #FFF;
   --tag-background-color: #EEE;
+  --default-font-color: #111;
+  --link-color: #77D;
 
   /* page */
   --page-max-width: 800px;
@@ -11,11 +13,9 @@
   /* fonts */
   --default-font: Verdana, Helvetica, Arial, sans-serif;
   --default-font-size: 1rem;
-  --default-font-color: #111;
   --font-size-small: 0.8rem;
 
   /* links */
-  --link-color: #77D;
   --link-text-decoration: none;
 
   /* spacing */

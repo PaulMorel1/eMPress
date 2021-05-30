@@ -5,6 +5,7 @@ module.exports = {
     author: "Evan X. Merz",
     siteUrl: "https://www.empress.blog",
     twitterHandle: "@EvanXMerz",
+    theme: "dark",
   },
   plugins: [
     "gatsby-plugin-image",

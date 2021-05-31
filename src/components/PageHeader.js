@@ -28,7 +28,7 @@ export default function PageHeader() {
             </Link>
           )} />
       </div>
-      <PageHeaderMenu />
+      <PageHeaderMenu styles={PageHeaderStyles} />
     </header>
   );
 }

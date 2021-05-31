@@ -6,7 +6,7 @@ module.exports = {
     siteUrl: "https://www.empress.blog",
     twitterHandle: "@EvanXMerz",
     theme: "light",
-    headerType: "hero", // change this to "hero" to use the hero banner header
+    headerType: "normal", // change this to "hero" to use the hero banner header
     desktopHeroImage: "david-clode-13PjNBaDMcg-unsplash.jpg",
     mobileHeroImage: "david-clode-13PjNBaDMcg-unsplash.jpg",
   },

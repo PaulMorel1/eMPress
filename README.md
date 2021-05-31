@@ -66,7 +66,7 @@ Deploy this starter with one click on [Gatsby Cloud](https://www.gatsbyjs.com/cl
 
 [<img src="https://www.gatsbyjs.com/deploynow.svg" alt="Deploy to Gatsby Cloud">](https://www.gatsbyjs.com/dashboard/deploynow?url=https://github.com/PaulMorel1/eMPress)
 
-## How to make a new theme?
+## How do I make a new theme?
 
 See `src\styles\themes\dark.css` for example.
 
@@ -75,10 +75,14 @@ See `src\styles\themes\dark.css` for example.
 3. Modify `src\styles\themes\themes.js`. Add the import for your new theme.
 4. Modify `gatsby-config.js`. Update `siteMetadata.theme` to match your new theme name. So if your theme name is `marks-dark-theme` then you should set theme to `marks-dark-theme`.
 
-## How to set hero image?
+## How do I set the hero image?
 
 1. Set `headerType` to `hero` in  `gatsby-config.js`.
 2. Then set the fields `desktopHeroImage` and `mobileHeroImage` to the filenames of the images in `/static/images`.
+
+## How do I configure Google Analytics?
+
+1. Update the `trackingIds` field in `gatsby-config.js`. You must have signed up for Google Analytics already. Like everything else in an Empress Blog, it is free.
 
 ## License
 

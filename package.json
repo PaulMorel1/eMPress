@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "gatsby": "^3.5.0",
+    "gatsby-plugin-google-gtag": "^3.6.0",
     "gatsby-plugin-image": "^1.3.0",
     "gatsby-plugin-react-helmet": "^4.3.0",
     "gatsby-plugin-sharp": "^3.3.0",

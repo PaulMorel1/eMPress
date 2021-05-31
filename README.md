@@ -39,7 +39,7 @@ Empress is a fully featured Gatsby blog starter.
 - Pinned posts
 - Deployment to AWS (S3/CloudFront)
 - Redirects
-- TODO: Google Analytics
+- Hero banner
 
 ## Development
 
@@ -74,6 +74,11 @@ See `src\styles\themes\dark.css` for example.
 2. Update the css file. Add the new rules for your theme. The class name at the top is the name of your theme.
 3. Modify `src\styles\themes\themes.js`. Add the import for your new theme.
 4. Modify `gatsby-config.js`. Update `siteMetadata.theme` to match your new theme name. So if your theme name is `marks-dark-theme` then you should set theme to `marks-dark-theme`.
+
+## How to set hero image?
+
+1. Set `headerType` to `hero` in  `gatsby-config.js`.
+2. Then set the fields `desktopHeroImage` and `mobileHeroImage` to the filenames of the images in `/static/images`.
 
 ## License
 

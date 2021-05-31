@@ -71,5 +71,14 @@ module.exports = {
         path: `${__dirname}/content/menus/`,
       }
     },
+    {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        // You can add multiple tracking ids and a pageview event will be fired for all of them.
+        trackingIds: [
+          "G-MXFPMHX87J", // Google Analytics Measurement ID. Replace this one with your own.
+        ],
+      },
+    },
   ],
 };

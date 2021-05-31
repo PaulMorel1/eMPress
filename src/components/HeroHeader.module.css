@@ -30,8 +30,26 @@
   text-align: right;
 }
 
-.heroImage {
-  width: 100vw;
+/* desktop styles */
+@media only screen and (min-width: 641px) {
+  .desktopHeroImage {
+    width: 100vw;
+  }
+  
+  .mobileHeroImage {
+    display: none;
+  }
+}
+
+/* mobile styles */
+@media only screen and (max-width: 640px) {
+  .desktopHeroImage {
+    display: none;
+  }
+  
+  .mobileHeroImage {
+    width: 100vw;
+  }
 }
 
 .titleContainer {

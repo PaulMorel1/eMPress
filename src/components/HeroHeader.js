@@ -25,7 +25,8 @@ export default function HeroHeader() {
 
   return (
     <header className={[HeroHeaderStyles.container].join(' ')}>
-      <img src={`/images/${site.siteMetadata.desktopHeroImage}`} className={HeroHeaderStyles.heroImage} />
+      <img src={`/images/${site.siteMetadata.desktopHeroImage}`} className={HeroHeaderStyles.desktopHeroImage} />
+      <img src={`/images/${site.siteMetadata.mobileHeroImage}`} className={HeroHeaderStyles.mobileHeroImage} />
       <div className={HeroHeaderStyles.titleContainer}>
         <Link to="/">
           <h1>{site.siteMetadata.title}</h1>

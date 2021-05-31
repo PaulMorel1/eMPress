@@ -40,6 +40,7 @@ Empress is a fully featured Gatsby blog starter.
 - Deployment to AWS (S3/CloudFront)
 - Redirects
 - Hero banner
+- Google Analytics
 
 ## Development
 

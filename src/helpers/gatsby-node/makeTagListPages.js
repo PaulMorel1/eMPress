@@ -2,7 +2,7 @@ const path = require("path");
 const makeSlug = require("../makeSlug.js");
 
 // Loop through each tag map and create list pages for each
-const makeTagListPages = ({ createPage, taggedPosts, postsPerPage }) => {
+const makeTagListPages = ({ createPage, templatePath, taggedPosts, postsPerPage = 5 }) => {
   for(let tag in taggedPosts) {
     let totalPosts = taggedPosts[tag].length;
     const numPages = Math.max(Math.ceil(totalPosts / postsPerPage), 1);
@@ -14,7 +14,7 @@ const makeTagListPages = ({ createPage, taggedPosts, postsPerPage }) => {
 
       createPage({
         path: i === 0 ? `/tag/${slug}` : `/tag/${slug}/${currentPage}`,
-        component: path.resolve('./src/templates/post-list-page.js'),
+        component: templatePath,
         context: {
           title: `Posts Tagged "${slug}"`,
           posts: {

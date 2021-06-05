@@ -2,7 +2,7 @@ const path = require("path");
 const makeSlug = require("../makeSlug.js");
 
 // This makes the pages defined in content\pages
-const makePages = ({ createPage, pages }) => {
+const makePages = ({ createPage, templatePath, redirectTemplatePath, pages }) => {
   if(!pages || !createPage) {
     return null;
   }
@@ -13,7 +13,7 @@ const makePages = ({ createPage, pages }) => {
     
     createPage({
       path: pagePath,
-      component: path.resolve('./src/templates/blog-page.js'),
+      component: templatePath,
       context: {
         slug: node.frontmatter.slug,
       }
@@ -24,7 +24,7 @@ const makePages = ({ createPage, pages }) => {
       node.frontmatter.redirects.forEach((url) => {
         createPage({
           path: `/${url}`,
-          component: path.resolve('./src/templates/redirect-page.js'),
+          component: redirectTemplatePath,
           context: {
             from: `/${url}`,
             to: pagePath,

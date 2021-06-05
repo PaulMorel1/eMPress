@@ -1,4 +1,3 @@
-const path = require("path");
 const makeSlug = require("./src/helpers/makeSlug.js");
 const makePages = require("./src/helpers/gatsby-node/makePages.js");
 const makeTagListPages = require("./src/helpers/gatsby-node/makeTagListPages.js");
@@ -91,8 +90,6 @@ exports.createPages = async({ graphql, actions }) => {
     }
   `);
 
-  makePages({ createPage, pages: result.data.pages });
-
   // These lists will be used for list pages
   let taggedPosts = [];
   let authorPosts = [];
@@ -107,7 +104,7 @@ exports.createPages = async({ graphql, actions }) => {
     // make the page for the post itself
     createPage({
       path: postPath,
-      component: path.resolve('./src/templates/blog-post-page.js'),
+      component: require.resolve('./src/templates/blog-post-page.js'),
       context: {
         slug: node.frontmatter.slug,
       }
@@ -118,7 +115,7 @@ exports.createPages = async({ graphql, actions }) => {
       node.frontmatter.redirects.forEach((url) => {
         createPage({
           path: `/${url}`,
-          component: path.resolve('./src/templates/redirect-page.js'),
+          component: require.resolve('./src/templates/redirect-page.js'),
           context: {
             from: `/${url}`,
             to: postPath,
@@ -157,9 +154,31 @@ exports.createPages = async({ graphql, actions }) => {
     }
   });
 
-  makePaginatedIndex({ createPage, posts: result.data.posts, postsPerPage });
+  makePages({ 
+    createPage, 
+    templatePath: require.resolve('./src/templates/blog-page.js'), 
+    redirectTemplatePath: require.resolve('./src/templates/redirect-page.js'), 
+    pages: result.data.pages
+  });
 
-  makeTagListPages({ createPage, taggedPosts, postsPerPage });
+  makePaginatedIndex({ 
+    createPage, 
+    templatePath: require.resolve('./src/templates/post-list-page.js'),
+    posts: result.data.posts, 
+    postsPerPage
+  });
 
-  makeAuthorListPages({ createPage, authorPosts, postsPerPage });
+  makeTagListPages({ 
+    createPage, 
+    templatePath: require.resolve('./src/templates/post-list-page.js'),
+    taggedPosts, 
+    postsPerPage
+  });
+
+  makeAuthorListPages({ 
+    createPage, 
+    templatePath: require.resolve('./src/templates/post-list-page.js'),
+    authorPosts, 
+    postsPerPage
+  });
 };

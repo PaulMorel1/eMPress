@@ -2,7 +2,7 @@ const path = require("path");
 const makeSlug = require("../makeSlug.js");
 
 // Loop through each author map and create list pages for each
-const makeAuthorListPages = ({ createPage, authorPosts, postsPerPage }) => {
+const makeAuthorListPages = ({ createPage, templatePath, authorPosts, postsPerPage = 5 }) => {
   for(let author in authorPosts) {
     let totalPosts = authorPosts[author].length;
     const numPages = Math.max(Math.ceil(totalPosts / postsPerPage), 1);
@@ -15,7 +15,7 @@ const makeAuthorListPages = ({ createPage, authorPosts, postsPerPage }) => {
 
       createPage({
         path: i === 0 ? pathPrefix : `${pathPrefix}/${currentPage}`,
-        component: path.resolve('./src/templates/post-list-page.js'),
+        component: templatePath,
         context: {
           title: `Posts Written by "${author}"`,
           posts: {

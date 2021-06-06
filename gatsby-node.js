@@ -18,6 +18,25 @@ exports.onPreBootstrap = ({ reporter }) => {
   });
 };
 
+// Set up schemas
+exports.createSchemaCustomization = ({ actions }) => {
+  const { createTypes } = actions
+  const typeDefs = `
+    type SiteSiteMetadata implements Node {
+      title: String!
+      description: String
+      author: String
+      siteUrl: String
+      twitterHandle: String
+      theme: String
+      headerType: String
+      desktopHeroImage: String
+      mobileHeroImage: String
+    }
+  `
+  createTypes(typeDefs)
+}
+
 /**
  * Add a field to each markdown file to indicate which 
  * collection it belongs to. Posts or pages or something else?

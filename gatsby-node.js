@@ -1,8 +1,22 @@
+const fs = require("fs");
+
 const makeSlug = require("./src/helpers/makeSlug.js");
 const makePages = require("./src/helpers/gatsby-node/makePages.js");
 const makeTagListPages = require("./src/helpers/gatsby-node/makeTagListPages.js");
 const makeAuthorListPages = require("./src/helpers/gatsby-node/makeAuthorListPages.js");
 const makePaginatedIndex = require("./src/helpers/gatsby-node/makePaginatedIndex.js");
+
+// Ensure that the required directories exist
+exports.onPreBootstrap = ({ reporter }) => {
+  const requiredPaths = ["content", "content/posts", "content/pages", "content/menus", "static", "static/images"];
+
+  requiredPaths.forEach(path => {
+    if(!fs.existsSync(path)) {
+      reporter.info(`creating directory ${path}...`);
+      fs.mkdirSync(path);
+    }
+  });
+};
 
 /**
  * Add a field to each markdown file to indicate which 

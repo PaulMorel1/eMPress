@@ -3,7 +3,7 @@ module.exports = {
     title: "Empress Blog",
     description: "Gatsby blog starter for a low cost, full featured blog.",
     author: "Evan X. Merz",
-    siteUrl: "https://www.empress.blog",
+    siteUrl: "https://www.empressblog.org",
     twitterHandle: "@EvanXMerz",
     theme: "light",
     headerType: "normal", // change this to "hero" to use the hero banner header

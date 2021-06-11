@@ -2,8 +2,6 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 
-import favicon from '../../static/images/favicon.ico';
-
 const Seo = ({ description, title, twitterHandle, imageUrl }) => {
   const { site } = useStaticQuery(
     graphql`
@@ -70,7 +68,7 @@ const Seo = ({ description, title, twitterHandle, imageUrl }) => {
       }}
       meta={metaTags}
     >
-      <link rel="icon" href={favicon} />
+      <link rel="icon" href='/static/images/favicon.ico' />
     </Helmet>
   );
 };

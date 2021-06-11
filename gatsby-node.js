@@ -20,7 +20,8 @@ exports.onPreBootstrap = ({ reporter }) => {
 
 // Set up schemas
 exports.createSchemaCustomization = ({ actions }) => {
-  const { createTypes } = actions
+  const { createTypes } = actions;
+
   const typeDefs = `
     type SiteSiteMetadata implements Node {
       title: String!
@@ -33,8 +34,9 @@ exports.createSchemaCustomization = ({ actions }) => {
       desktopHeroImage: String
       mobileHeroImage: String
     }
-  `
-  createTypes(typeDefs)
+  `;
+
+  createTypes(typeDefs);
 }
 
 /**

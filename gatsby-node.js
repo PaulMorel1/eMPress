@@ -69,7 +69,7 @@ exports.createPages = async({ graphql, actions }) => {
   // fetch all markdown pages
   const result = await graphql(`
     {
-      pages: allMarkdownRemark(
+      empressPages: allMarkdownRemark(
         filter: { 
           frontmatter: {
             published: {eq: true} }, 
@@ -91,7 +91,7 @@ exports.createPages = async({ graphql, actions }) => {
           }
         }
       }
-      posts: allMarkdownRemark(
+      empressPosts: allMarkdownRemark(
         sort: { 
           fields: [frontmatter___pinned, frontmatter___date], 
           order: [ASC, DESC] 
@@ -125,7 +125,7 @@ exports.createPages = async({ graphql, actions }) => {
     }
   `);
 
-  if(result.data.posts.edges.length === 0) {
+  if(result.data.empressPosts.edges.length === 0) {
     console.error("No posts found!");
   }
 
@@ -136,10 +136,10 @@ exports.createPages = async({ graphql, actions }) => {
   // variables for pagination
   const postsPerPage = 5;
 
-  console.log(`Making ${result.data.posts.edges.length} posts...`);
+  console.log(`Making ${result.data.empressPosts.edges.length} posts...`);
 
   // loop through each post and create the post pages
-  result.data.posts.edges.forEach(({ node }) => {
+  result.data.empressPosts.edges.forEach(({ node }) => {
     const postPath = `/post/${makeSlug(node.frontmatter.slug)}`;
     
     // make the page for the post itself
@@ -195,21 +195,21 @@ exports.createPages = async({ graphql, actions }) => {
     }
   });
 
-  console.log(`Making ${result.data.pages.edges.length} pages...`);
+  console.log(`Making ${result.data.empressPages.edges.length} pages...`);
 
   makePages({ 
     createPage, 
     templatePath: require.resolve('./src/templates/blog-page.js'), 
     redirectTemplatePath: require.resolve('./src/templates/redirect-page.js'), 
-    pages: result.data.pages
+    pages: result.data.empressPages
   });
 
-  console.log(`Paginating the home page to ${result.data.posts.edges.length / postsPerPage} pages...`);
+  console.log(`Paginating the home page to ${Math.ceil(result.data.empressPosts.edges.length / postsPerPage)} pages...`);
 
   makePaginatedIndex({ 
     createPage, 
     templatePath: require.resolve('./src/templates/post-list-page.js'),
-    posts: result.data.posts, 
+    posts: result.data.empressPosts, 
     postsPerPage
   });
 

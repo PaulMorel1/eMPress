@@ -1,9 +1,10 @@
 {
-  "name": "gatsby-starter-empress-blog",
+  "name": "gatsby-starter-empress",
   "version": "0.0.1",
-  "private": true,
-  "description": "eMPress is a full featured blog starter with tags, themes, pinned posts, redirects, google analytics, hero banner, and more.",
-  "author": "Evan X. Merz",
+  "private": false,
+  "description": "Empress is a full featured blog starter with tags, themes, pinned posts, redirects, google analytics, hero banner, and more.",
+  "author": "Evan X. Merz (http://www.evanxmerz.com)",
+  "license": "CCBYNC3 (https://creativecommons.org/licenses/by-nc/3.0/)",
   "keywords": [
     "gatsby",
     "starter",

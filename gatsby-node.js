@@ -125,12 +125,18 @@ exports.createPages = async({ graphql, actions }) => {
     }
   `);
 
+  if(result.data.posts.edges.length === 0) {
+    console.error("No posts found!");
+  }
+
   // These lists will be used for list pages
   let taggedPosts = [];
   let authorPosts = [];
 
   // variables for pagination
   const postsPerPage = 5;
+
+  console.log(`Making ${result.data.posts.edges.length} posts...`);
 
   // loop through each post and create the post pages
   result.data.posts.edges.forEach(({ node }) => {
@@ -189,12 +195,16 @@ exports.createPages = async({ graphql, actions }) => {
     }
   });
 
+  console.log(`Making ${result.data.pages.edges.length} pages...`);
+
   makePages({ 
     createPage, 
     templatePath: require.resolve('./src/templates/blog-page.js'), 
     redirectTemplatePath: require.resolve('./src/templates/redirect-page.js'), 
     pages: result.data.pages
   });
+
+  console.log(`Paginating the home page to ${result.data.posts.edges.length / postsPerPage} pages...`);
 
   makePaginatedIndex({ 
     createPage, 
@@ -203,12 +213,16 @@ exports.createPages = async({ graphql, actions }) => {
     postsPerPage
   });
 
+  console.log(`Making ${taggedPosts.length} tag list pages...`);
+
   makeTagListPages({ 
     createPage, 
     templatePath: require.resolve('./src/templates/post-list-page.js'),
     taggedPosts, 
     postsPerPage
   });
+
+  console.log(`Making ${authorPosts.length} author list pages...`);
 
   makeAuthorListPages({ 
     createPage, 

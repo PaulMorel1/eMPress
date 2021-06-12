@@ -1,14 +1,23 @@
 # Empress
 
-Full featured Gatsby blog starter that allows you to run a fast static blog as cheaply as possible.
+## Description
 
-Created by Evan X. Merz.
-
-## About
-
-This is essentially a feature complete static blog starter based on the Gatsby tutorial. So if you finished the Gatsby tutorial and you think Gatsby is great, but you don't want to waste time re-inventing basic features like tags, then this might be the right starter for you.
+Empress is a feature complete static blog starter based on the Gatsby tutorial. So if you finished the Gatsby tutorial and you think Gatsby is great, but you don't want to waste time re-inventing basic features like tags, then this might be the right starter for you.
 
 The goal is a blog for the 21st century that has all the core features of a static blog, without any bloat.
+
+### Features
+
+Empress is a fully featured Gatsby blog starter.
+
+- Tags
+- Menus
+- Themes
+- Pinned posts
+- Deployment to AWS (S3/CloudFront)
+- Redirects
+- Hero banner
+- Google Analytics
 
 ### But why no SASS? Styled Components? Typography?
 
@@ -29,18 +38,9 @@ the following things.
 - a free AWS account
 - knowledge of git and markdown
 
-## Features
+## How to install
 
-Empress is a fully featured Gatsby blog starter.
-
-- Tags
-- Menus
-- Themes
-- Pinned posts
-- Deployment to AWS (S3/CloudFront)
-- Redirects
-- Hero banner
-- Google Analytics
+Fork this repository. Pull to your local computer.
 
 ## Development
 

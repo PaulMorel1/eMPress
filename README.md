@@ -42,6 +42,10 @@ the following things.
 
 Fork this repository. Pull to your local computer.
 
+### Or try the theme
+
+Gatsby now suggests that you use "themes" rather than starters. Empress is also available as a "theme" here: https://github.com/PaulMorel1/gatsby-theme-empress
+
 ## Development
 
 It's a minimalist gatsby project, so you can run it using the same npm commands you'd use to run any Node.js project.

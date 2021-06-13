@@ -1,7 +1,7 @@
 const path = require("path");
 
 // This method loops through each post and paginates them from the homepage in date order
-const makePaginatedIndex = ({ createPage, templatePath, posts, postsPerPage = 5 }) => {
+const makePaginatedIndex = ({ createPage, templatePath, posts, postsPerPage = 5, empressPath = "" }) => {
   // calculate the number of pages
   let allPosts = posts.edges;
   let totalPosts = allPosts.length;
@@ -12,16 +12,17 @@ const makePaginatedIndex = ({ createPage, templatePath, posts, postsPerPage = 5 
     const currentPage = i + 1
 
     createPage({
-      path: i === 0 ? `/` : `/posts/${currentPage}`,
+      path: i === 0 ? `${empressPath}/` : `${empressPath}/posts/${currentPage}`,
       component: templatePath,
       context: {
         title: null,
         posts: {
           edges: allPosts.slice(i * postsPerPage, (i + 1) * postsPerPage),
         },
-        nextPage: i < numPages - 1 ? `/posts/${currentPage + 1}` : null,
-        previousPage: i > 1 ? `/posts/${currentPage - 1}` : (i === 1 ? `/` : null),
+        nextPage: i < numPages - 1 ? `${empressPath}/posts/${currentPage + 1}` : null,
+        previousPage: i > 1 ? `${empressPath}/posts/${currentPage - 1}` : (i === 1 ? `/` : null),
         fullText: true,
+        empressPath: empressPath,
       }
     });
   }

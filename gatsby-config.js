@@ -9,6 +9,7 @@ module.exports = {
     headerType: "normal", // change this to "hero" to use the hero banner header
     desktopHeroImage: "david-clode-13PjNBaDMcg-unsplash.jpg",
     mobileHeroImage: "david-clode-13PjNBaDMcg-unsplash.jpg",
+    empressPath: "", // change to /blog to host your blog at /blog
   },
   plugins: [
     "gatsby-plugin-image",

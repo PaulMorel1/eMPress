@@ -2,14 +2,14 @@ const path = require("path");
 const makeSlug = require("../makeSlug.js");
 
 // This makes the pages defined in content\pages
-const makePages = ({ createPage, templatePath, redirectTemplatePath, pages }) => {
+const makePages = ({ createPage, templatePath, redirectTemplatePath, pages, empressPath = "" }) => {
   if(!pages || !createPage) {
     return null;
   }
 
   // loop through each page and create the pages
   pages.edges.forEach(({ node }) => {
-    const pagePath = `/${makeSlug(node.frontmatter.slug)}`;
+    const pagePath = `${empressPath}/${makeSlug(node.frontmatter.slug)}`;
     
     createPage({
       path: pagePath,

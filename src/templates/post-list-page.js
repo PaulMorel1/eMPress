@@ -12,7 +12,7 @@ const PostListPage = ({ pageContext }) => {
   return (
     <PageLayout seo={seoDetails}>
       {pageContext.title && <h2>{pageContext.title}</h2>}
-      <PostList posts={pageContext.posts} fullText={pageContext.fullText} />
+      <PostList posts={pageContext.posts} fullText={pageContext.fullText} empressPath={pageContext.empressPath} />
       {pageContext.previousPage &&
         <Link to={pageContext.previousPage}>Previous</Link>
       }

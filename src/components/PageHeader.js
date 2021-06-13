@@ -18,12 +18,13 @@ export default function PageHeader() {
               site {
                 siteMetadata {
                   title
+                  empressPath
                 }
               }
             }
           `}
           render={data => (
-            <Link to="/">
+            <Link to={data.site.siteMetadata.empressPath ? data.site.siteMetadata.empressPath : "/"}>
               <h1>{data.site.siteMetadata.title}</h1>
             </Link>
           )} />

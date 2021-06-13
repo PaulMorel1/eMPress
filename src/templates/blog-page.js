@@ -5,15 +5,20 @@ import PageLayout from "../components/PageLayout";
 import BlogPost from "../components/BlogPost";
 
 const BlogPage = ({ data }) => {
-  const post = data.markdownRemark;
+  const page = data.page;
   const seoDetails = {
-    title: post.frontmatter.title,
-    description: post.excerpt,
+    title: page.frontmatter.title,
+    description: page.excerpt,
   };
+
+  let empressPath = "";
+  if(data.site?.siteMetadata?.empressPath) {
+    empressPath = data.site.siteMetadata.empressPath;
+  }
 
   return (
     <PageLayout seo={seoDetails}>
-      <BlogPost post={post} fullText={true} showMeta={false} type='page' />
+      <BlogPost post={page} fullText={true} showMeta={false} type='page' empressPath={empressPath} />
     </PageLayout>
   )
 };
@@ -22,7 +27,12 @@ export default BlogPage;
 
 export const query = graphql`
   query($slug: String!) {
-    markdownRemark(
+    site {
+      siteMetadata {
+        empressPath
+      }
+    }
+    page: markdownRemark(
       frontmatter: {
         published: {eq: true}
         slug: { eq: $slug }

@@ -33,6 +33,7 @@ exports.createSchemaCustomization = ({ actions }) => {
       headerType: String
       desktopHeroImage: String
       mobileHeroImage: String
+      empressPath: String
     }
   `;
 
@@ -69,6 +70,11 @@ exports.createPages = async({ graphql, actions }) => {
   // fetch all markdown pages
   const result = await graphql(`
     {
+      site {
+        siteMetadata {
+          empressPath
+        }
+      }
       empressPages: allMarkdownRemark(
         filter: { 
           frontmatter: {
@@ -129,6 +135,11 @@ exports.createPages = async({ graphql, actions }) => {
     console.error("No posts found!");
   }
 
+  let empressPath = "";
+  if(result.data.site?.siteMetadata?.empressPath) {
+    empressPath = result.data.site.siteMetadata.empressPath;
+  }
+
   // These lists will be used for list pages
   let taggedPosts = [];
   let authorPosts = [];
@@ -140,7 +151,7 @@ exports.createPages = async({ graphql, actions }) => {
 
   // loop through each post and create the post pages
   result.data.empressPosts.edges.forEach(({ node }) => {
-    const postPath = `/post/${makeSlug(node.frontmatter.slug)}`;
+    const postPath = `${empressPath}/post/${makeSlug(node.frontmatter.slug)}`;
     
     // make the page for the post itself
     createPage({
@@ -201,7 +212,8 @@ exports.createPages = async({ graphql, actions }) => {
     createPage, 
     templatePath: require.resolve('./src/templates/blog-page.js'), 
     redirectTemplatePath: require.resolve('./src/templates/redirect-page.js'), 
-    pages: result.data.empressPages
+    pages: result.data.empressPages,
+    empressPath: empressPath
   });
 
   console.log(`Paginating the home page to ${Math.ceil(result.data.empressPosts.edges.length / postsPerPage)} pages...`);
@@ -210,7 +222,8 @@ exports.createPages = async({ graphql, actions }) => {
     createPage, 
     templatePath: require.resolve('./src/templates/post-list-page.js'),
     posts: result.data.empressPosts, 
-    postsPerPage
+    postsPerPage,
+    empressPath: empressPath
   });
 
   console.log(`Making ${taggedPosts.length} tag list pages...`);
@@ -219,7 +232,8 @@ exports.createPages = async({ graphql, actions }) => {
     createPage, 
     templatePath: require.resolve('./src/templates/post-list-page.js'),
     taggedPosts, 
-    postsPerPage
+    postsPerPage,
+    empressPath: empressPath
   });
 
   console.log(`Making ${authorPosts.length} author list pages...`);
@@ -228,6 +242,7 @@ exports.createPages = async({ graphql, actions }) => {
     createPage, 
     templatePath: require.resolve('./src/templates/post-list-page.js'),
     authorPosts, 
-    postsPerPage
+    postsPerPage,
+    empressPath: empressPath
   });
 };

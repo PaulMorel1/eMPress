@@ -6,10 +6,12 @@ module.exports = {
     siteUrl: "https://www.empressblog.org",
     twitterHandle: "@EvanXMerz",
     theme: "light",
-    headerType: "normal", // change this to "hero" to use the hero banner header
-    desktopHeroImage: "david-clode-13PjNBaDMcg-unsplash.jpg",
-    mobileHeroImage: "david-clode-13PjNBaDMcg-unsplash.jpg",
     empressPath: "", // change to /blog to host your blog at /blog
+    header: {
+      type: "normal", // change this to "hero" to use the hero banner header
+      desktopHeroImage: "david-clode-13PjNBaDMcg-unsplash.jpg",
+      mobileHeroImage: "david-clode-13PjNBaDMcg-unsplash.jpg",
+    }
   },
   plugins: [
     "gatsby-plugin-image",

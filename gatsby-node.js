@@ -30,10 +30,14 @@ exports.createSchemaCustomization = ({ actions }) => {
       siteUrl: String
       twitterHandle: String
       theme: String
-      headerType: String
+      header: SiteSiteMetadataHeader
+      empressPath: String
+    }
+
+    type SiteSiteMetadataHeader {
+      type: String
       desktopHeroImage: String
       mobileHeroImage: String
-      empressPath: String
     }
   `;
 

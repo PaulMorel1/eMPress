@@ -57,8 +57,9 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 100%;
   word-break: normal;
+  background-color: var(--hero-header-title-background-color);
+  padding: var(--padding-xsmall);
 }
 
 .titleContainer a {
@@ -71,6 +72,8 @@
 
 .navigationLink {
   margin-right: var(--padding-small);
+  background-color: var(--hero-header-title-background-color);
+  padding: var(--padding-xsmall);
 }
 
 .navigationLink a {

@@ -30,10 +30,14 @@ exports.createSchemaCustomization = ({ actions }) => {
       siteUrl: String
       twitterHandle: String
       theme: String
-      headerType: String
+      header: SiteSiteMetadataHeader
+      empressPath: String
+    }
+
+    type SiteSiteMetadataHeader {
+      type: String
       desktopHeroImage: String
       mobileHeroImage: String
-      empressPath: String
     }
   `;
 
@@ -136,7 +140,7 @@ exports.createPages = async({ graphql, actions }) => {
   }
 
   let empressPath = "";
-  if(result.data.site?.siteMetadata?.empressPath) {
+  if(result.data.site && result.data.site.siteMetadata && result.data.site.siteMetadata.empressPath) {
     empressPath = result.data.site.siteMetadata.empressPath;
   }
 

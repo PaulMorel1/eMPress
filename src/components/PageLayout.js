@@ -15,11 +15,13 @@ export default function PageLayout(props) {
   // Fetch site meta data including theme
   const { site } = useStaticQuery(
     graphql`
-      query {
+      query ThemeQuery {
         site {
           siteMetadata {
             theme
-            headerType
+            header {
+              type
+            }
           }
         }
       }
@@ -31,8 +33,8 @@ export default function PageLayout(props) {
   return (
     <div className={[PageLayoutStyles.outerContainer, theme].join(' ')}>
       <Seo {...props.seo} />
-      {site.siteMetadata.headerType !== "hero" && <PageHeader />}
-      {site.siteMetadata.headerType === "hero" && <HeroHeader />}
+      {site.siteMetadata.header?.type !== "hero" && <PageHeader />}
+      {site.siteMetadata.header?.type === "hero" && <HeroHeader />}
       <div className='contentContainer'>
         <main>
           {props.children}

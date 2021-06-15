@@ -18,9 +18,12 @@ export default function HeroHeader() {
         site {
           siteMetadata {
             title
-            desktopHeroImage
-            mobileHeroImage
             empressPath
+            header {
+              desktopHeroImage
+              mobileHeroImage
+            }
+            
           }
         }
       }
@@ -35,12 +38,12 @@ export default function HeroHeader() {
   return (
     <header className={[HeroHeaderStyles.container].join(' ')}>
       <img 
-        src={`/images/${site.siteMetadata.desktopHeroImage}`}
+        src={`/images/${site.siteMetadata.header?.desktopHeroImage}`}
         className={HeroHeaderStyles.desktopHeroImage}
         alt={`Banner for ${site.siteMetadata.title}`}
       />
       <img
-        src={`/images/${site.siteMetadata.mobileHeroImage}`}
+        src={`/images/${site.siteMetadata.header?.mobileHeroImage}`}
         className={HeroHeaderStyles.mobileHeroImage}
         alt={`Banner for ${site.siteMetadata.title}`}
       />

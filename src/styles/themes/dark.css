@@ -9,6 +9,7 @@
   --link-color: #FCFCFC;
   --hero-header-title-font-color: #F5f5f5;
   --hero-header-menu-font-color: #F5f5f5;
+  --hero-header-title-background-color: rgba(10, 10, 10, 0.6);
 
   /* page */
   --page-max-width: 800px;

@@ -1,0 +1,41 @@
+/* desktop styles */
+@media only screen and (min-width: 641px) {
+  .authorContainer {
+    margin-top: var(--padding-xlarge);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  /* 
+    See https://medium.com/@biancapower/how-to-make-a-rectangle-image-a-circle-in-css-2f392bc9abd3#:~:text=border%2Dradius%3A%2050%25%3B%20is,just%20leave%20this%20line%20out.
+  */
+  .avatarContainer {
+    min-width: 200px;
+    width: 200px;
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+  }
+
+  .avatar {
+    height: 100%;
+    width: auto;
+    max-width: unset !important;
+    margin-left: -25%;
+  } 
+  
+  .authorDetails {
+    padding-left: var(--padding-small);
+  }
+}
+
+/* mobile styles */
+@media only screen and (max-width: 640px) {
+  .authorContainer {
+    margin-top: var(--padding-large);
+    display: flex;
+    flex-direction: column;
+  }  
+}

@@ -4,8 +4,9 @@ import { Link } from "gatsby";
 import * as BlogPostStyles from "./BlogPost.module.css";
 import makeTagLinks from "../helpers/makeTagLinks.js";
 import makeSlug from "../helpers/makeSlug.js";
+import Author from "./Author.js";
 
-export default function BlogPost({ post, fullText = true, showMeta = true, type = 'post', empressPath = "" }) {
+export default function BlogPost({ post, author, fullText = true, showMeta = true, type = 'post', empressPath = "" }) {
   const titleLink = type === 'post' ? `${empressPath}/post/${makeSlug(post.frontmatter.slug)}` : `${empressPath}/${makeSlug(post.frontmatter.slug)}`;
   return (
     <div className={BlogPostStyles.blogPostContainer}>
@@ -30,7 +31,10 @@ export default function BlogPost({ post, fullText = true, showMeta = true, type 
         <p>{post.excerpt}</p>
       }
       {fullText && post.html && 
-        <div dangerouslySetInnerHTML={{ __html: post.html }} />
+        <>
+          <div dangerouslySetInnerHTML={{ __html: post.html }} />
+          {author && <Author author={author} empressPath={empressPath} />}
+        </>
       }
       {(!fullText || !post.html) && 
         <p>

@@ -4,7 +4,7 @@ import { graphql } from "gatsby";
 import PageLayout from "../components/PageLayout";
 import BlogPost from "../components/BlogPost";
 
-const BlogPostPage = ({ data }) => {
+const BlogPostPage = ({ data, pageContext }) => {
   const post = data.post;
   const seoDetails = {
     title: post.frontmatter.title,
@@ -18,7 +18,7 @@ const BlogPostPage = ({ data }) => {
 
   return (
     <PageLayout seo={seoDetails}>
-      <BlogPost post={post} fullText={true} empressPath={empressPath} />
+      <BlogPost post={post} fullText={true} empressPath={empressPath} author={pageContext.author} />
     </PageLayout>
   )
 };

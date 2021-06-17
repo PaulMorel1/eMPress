@@ -8,7 +8,7 @@ const makePaginatedIndex = require("./src/helpers/gatsby-node/makePaginatedIndex
 
 // Ensure that the required directories exist
 exports.onPreBootstrap = ({ reporter }) => {
-  const requiredPaths = ["content", "content/posts", "content/pages", "content/menus", "static", "static/images"];
+  const requiredPaths = ["content", "content/authors", "content/posts", "content/pages", "content/menus", "static", "static/images"];
 
   requiredPaths.forEach(path => {
     if(!fs.existsSync(path)) {
@@ -82,8 +82,10 @@ exports.createPages = async({ graphql, actions }) => {
       empressPages: allMarkdownRemark(
         filter: { 
           frontmatter: {
-            published: {eq: true} }, 
-            fields: { collection: {eq: "pages"}
+            published: {eq: true} 
+          }, 
+          fields: { 
+            collection: {eq: "pages"}
           }
         }
       ) {
@@ -132,6 +134,23 @@ exports.createPages = async({ graphql, actions }) => {
           }
         }
       }
+      empressAuthors: allMarkdownRemark(
+        filter: { 
+          fields: { collection: {eq: "authors"} }
+        }
+      ) {
+        edges {
+          node {
+            id
+            frontmatter {
+              title
+              slug
+            }
+            excerpt
+            html
+          }
+        }
+      }
     }
   `);
 
@@ -144,14 +163,20 @@ exports.createPages = async({ graphql, actions }) => {
     empressPath = result.data.site.siteMetadata.empressPath;
   }
 
-  // These lists will be used for list pages
+  // These lists will be used for making various pages
   let taggedPosts = [];
   let authorPosts = [];
+  let authors = {};
 
   // variables for pagination
   const postsPerPage = 5;
 
   console.log(`Making ${result.data.empressPosts.edges.length} posts...`);
+
+  // loop through each author and store the author data in a hash
+  result.data.empressAuthors.edges.forEach(({ node }) => {
+    authors[node.frontmatter.slug] = node;
+  });
 
   // loop through each post and create the post pages
   result.data.empressPosts.edges.forEach(({ node }) => {
@@ -163,6 +188,7 @@ exports.createPages = async({ graphql, actions }) => {
       component: require.resolve('./src/templates/blog-post-page.js'),
       context: {
         slug: node.frontmatter.slug,
+        author: authors[makeSlug(node.frontmatter.author)]
       }
     });
 

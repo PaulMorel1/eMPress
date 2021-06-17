@@ -145,6 +145,7 @@ exports.createPages = async({ graphql, actions }) => {
             frontmatter {
               title
               slug
+              featuredImage
             }
             excerpt
             html

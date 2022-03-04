@@ -14,7 +14,7 @@ Empress is a fully featured Gatsby blog starter.
 - Menus
 - Themes
 - Pinned posts
-- Deployment to AWS (S3/CloudFront)
+- Deployment to AWS (S3/CloudFront) via GitHub Actions
 - Redirects
 - Hero banner
 - Google Analytics

@@ -10,10 +10,10 @@ export default function BlogPost({ post, author, fullText = true, showMeta = tru
   const titleLink = type === 'post' ? `${empressPath}/post/${makeSlug(post.frontmatter.slug)}` : `${empressPath}/${makeSlug(post.frontmatter.slug)}`;
   return (
     <div className={BlogPostStyles.blogPostContainer}>
-      <h3>
+      <h2>
         <Link to={titleLink}>{post.frontmatter.title}</Link>
         {post.frontmatter.pinned && <Link to={`${empressPath}/tag/pinned`} className={['tag', BlogPostStyles.pinned].join(' ')}>pinned</Link>}
-      </h3>
+      </h2>
       {showMeta && 
         <div className={BlogPostStyles.metaContainer}>
           <div>

@@ -18,4 +18,6 @@
 .navigationLink {
   display: inline-block;
   margin-right: var(--padding-small);
+  padding: var(--padding-xsmall);
+  background-color: var(--tag-background-color);
 }

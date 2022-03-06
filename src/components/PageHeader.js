@@ -18,15 +18,19 @@ export default function PageHeader() {
               site {
                 siteMetadata {
                   title
+                  description
                   empressPath
                 }
               }
             }
           `}
           render={data => (
-            <Link to={data.site.siteMetadata.empressPath ? data.site.siteMetadata.empressPath : "/"}>
-              <h1>{data.site.siteMetadata.title}</h1>
-            </Link>
+            <>
+              <Link to={data.site.siteMetadata.empressPath ? data.site.siteMetadata.empressPath : "/"}>
+                <h1>{data.site.siteMetadata.title}</h1>
+              </Link>
+              <p>{data.site.siteMetadata.description}</p>
+            </>
           )} />
       </div>
       <PageHeaderMenu styles={PageHeaderStyles} />

@@ -1,7 +1,7 @@
 .container {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
 }
 
@@ -15,10 +15,12 @@
 .container h1 {
   margin: 0;
   padding: 0;
+  font-weight: 800;
 }
 
 .container ul {
   padding-inline-start: 0;
+  margin-top: var(--padding-xsmall);
 }
 
 .navigationLinks {
@@ -28,6 +30,8 @@
 
 .navigationLink {
   display: inline-block;
+  padding: var(--padding-xsmall);
+  background-color: var(--tag-background-color);
 }
 
 .navigationLink:not(:last-child) {

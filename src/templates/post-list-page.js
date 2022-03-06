@@ -3,6 +3,7 @@ import { Link } from "gatsby";
 
 import PageLayout from "../components/PageLayout";
 import PostList from "../components/PostList";
+import { navigationLink } from "../components/PageFooter.module.css";
 
 const PostListPage = ({ pageContext }) => {
   const seoDetails = {
@@ -14,10 +15,10 @@ const PostListPage = ({ pageContext }) => {
       {pageContext.title && <h2>{pageContext.title}</h2>}
       <PostList posts={pageContext.posts} fullText={pageContext.fullText} empressPath={pageContext.empressPath} />
       {pageContext.previousPage &&
-        <Link to={pageContext.previousPage}>Previous</Link>
+        <Link to={pageContext.previousPage} className={navigationLink}>Previous</Link>
       }
       {pageContext.nextPage &&
-        <Link to={pageContext.nextPage}>Next</Link>
+        <Link to={pageContext.nextPage} className={navigationLink}>Next</Link>
       }
     </PageLayout>
   )

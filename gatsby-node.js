@@ -210,7 +210,7 @@ exports.createPages = async({ graphql, actions }) => {
     // Store each tag in a hash. This may not be scalable.
     if(node.frontmatter.tags) {
       node.frontmatter.tags.forEach((tag) => {
-        if(!taggedPosts[tag]) {
+        if(!taggedPosts[tag] || !taggedPosts[tag].push) {
           taggedPosts[tag] = [{ node }];
         } else {
           taggedPosts[tag].push({ node });

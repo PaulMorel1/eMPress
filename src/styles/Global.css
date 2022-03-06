@@ -48,7 +48,7 @@ html {
 a, a.visited {
   color: var(--link-color);
   text-decoration: var(--link-text-decoration);
-  word-break: break-all;
+  word-break: break-word;
 }
 
 body {
@@ -60,6 +60,14 @@ h1, h2, h3, h4, h5 {
   margin: 0;
   padding: 0;
   font-weight: 400;
+}
+
+h1 {
+  font-weight: 800;
+}
+
+h2, h3 {
+  font-weight: 600;
 }
 
 h1, h2 {
@@ -75,6 +83,17 @@ h3, h4, h5 {
 ul {
   padding-inline-start: var(--padding-small);
   list-style-position: inside;
+}
+
+code {
+  display: block;
+  background-color: #EEE;
+  max-width: 100%;
+  overflow: auto;
+}
+
+blockquote {
+  font-style: italic;
 }
 
 /*

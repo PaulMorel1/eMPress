@@ -4,10 +4,11 @@ import makeSlug from "./makeSlug";
 
 export default function makeTagLinks({ tags, className, empressPath = "" }) {
   const tagLinks = [];
-  tags.forEach((item, index) =>
-    tagLinks.push(<span className={className} key={item}>
-      <Link to={`${empressPath}/tag/${makeSlug(item)}`} className='tag'>{item}</Link>{(index < tags.length - 1) && <span>, </span>}
+  tags.forEach((item, index) => {
+    const itemSlug = makeSlug(item);
+    tagLinks.push(<span className={className} key={itemSlug}>
+      <Link to={`${empressPath}/tag/${makeSlug(itemSlug)}`} className='tag'>{itemSlug}</Link>{(index < tags.length - 1) && <span>, </span>}
     </span>)
-  );
+  });
   return tagLinks;
 }

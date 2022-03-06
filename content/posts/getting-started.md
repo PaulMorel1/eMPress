@@ -5,7 +5,7 @@ date: "2021-05-24"
 author: "Evan X. Merz"
 tags: 
   - tutorial
-  - introduction
+  - Introduction
 published: true
 ---
 

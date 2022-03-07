@@ -14,10 +14,11 @@ Empress is a fully featured Gatsby blog starter.
 - Menus
 - Themes
 - Pinned posts
-- Deployment to AWS (S3/CloudFront) via GitHub Actions
+- Deployment to S3/CloudFront via GitHub Actions
 - Redirects
 - Hero banner
 - Google Analytics
+- BlogPosting schema tags (SEO)
 
 ### But why no SASS? Styled Components? Typography?
 
@@ -57,8 +58,11 @@ npm run dev
 
 ## Build
 
+To test a production build locally, use the following commands.
+
 ```
 npm run build
+npm run serve
 ```
 
 ## Deploy on AWS using GitHub Actions

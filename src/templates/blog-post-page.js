@@ -6,9 +6,12 @@ import BlogPost from "../components/BlogPost";
 
 const BlogPostPage = ({ data, pageContext }) => {
   const post = data.post;
+
+  // make the object that will generate the meta tags for this blog post
   const seoDetails = {
     title: post.frontmatter.title,
     description: post.excerpt,
+    blogPost: post,
   };
 
   let empressPath = "";

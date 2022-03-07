@@ -9,6 +9,7 @@ const BlogPage = ({ data }) => {
   const seoDetails = {
     title: page.frontmatter.title,
     description: page.excerpt,
+    blogPost: page,
   };
 
   let empressPath = "";

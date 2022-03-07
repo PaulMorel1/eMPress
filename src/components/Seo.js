@@ -2,7 +2,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 
-const Seo = ({ description, title, twitterHandle, imageUrl }) => {
+const Seo = ({ description, title, twitterHandle, imageUrl, blogPost }) => {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -19,6 +19,7 @@ const Seo = ({ description, title, twitterHandle, imageUrl }) => {
     `,
   );
 
+  // list of meta tags that will be rendered
   let metaTags = [
     {
       name: 'description',
@@ -50,6 +51,35 @@ const Seo = ({ description, title, twitterHandle, imageUrl }) => {
     }
   ];
 
+  const BlogPostingSchema = (blogPost) => {
+    if(!blogPost) {
+      return '';
+    }
+
+    const authorNameSplit = blogPost.frontmatter.author.split(" ");
+    const authorFirstName = authorNameSplit.length > 0 ? authorNameSplit[0] : '';
+    const authorLastName = authorNameSplit.length > 1 ? authorNameSplit[authorNameSplit.length - 1] : '';
+
+    return <script type="application/ld+json">
+      {JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        mainEntityOfPage: {
+          "@type": "WebPage",
+          "@id": `${site.siteMetadata.siteUrl}/post/${blogPost.frontmatter.slug}`
+        },
+        headline: blogPost.frontmatter.title,
+        description: blogPost.excerpt,
+        author: {
+          "@type": "Person",
+          givenName: authorFirstName,
+          familyName: authorLastName
+        },
+        datePublished: blogPost.frontmatter.date
+      })}
+    </script>;
+  };
+
   // if an image url was passed in, then add the og tag for it
   if(imageUrl) {
     metaTags.push({
@@ -69,6 +99,7 @@ const Seo = ({ description, title, twitterHandle, imageUrl }) => {
       meta={metaTags}
     >
       <link rel="icon" href='/static/images/favicon.ico' />
+      {BlogPostingSchema(blogPost)}
     </Helmet>
   );
 };

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "gatsby";
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 import * as AuthorStyles from "./Author.module.css";
 import makeSlug from "../helpers/makeSlug.js";
@@ -7,12 +8,16 @@ import makeSlug from "../helpers/makeSlug.js";
 export default function Author({ author, empressPath = "" }) {
   const titleLink = `${empressPath}/author/${makeSlug(author.frontmatter.slug)}`;
 
+  console.log({ featuredImage: author.frontmatter.featuredImage });
+
+  const image = getImage(author.frontmatter.featuredImage);
+
   return (
     <div className={AuthorStyles.authorContainer}>
       {author.frontmatter.featuredImage &&
         <div className={AuthorStyles.avatarContainer}>
-          <img 
-            src={`/images/${author.frontmatter.featuredImage}`}
+          <GatsbyImage 
+            image={image}
             className={AuthorStyles.avatar}
             alt={`Avatar for ${author.frontmatter.title}`}
           />

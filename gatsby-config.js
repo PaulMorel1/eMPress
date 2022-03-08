@@ -14,29 +14,13 @@ module.exports = {
     }
   },
   plugins: [
+    "gatsby-transformer-sharp",
+    "gatsby-plugin-sharp",
+    "gatsby-transformer-remark",
     "gatsby-plugin-image",
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-sitemap",
-    "gatsby-plugin-sharp",
     "gatsby-transformer-json",
-    "gatsby-transformer-sharp",
-    {
-      resolve: "gatsby-transformer-remark",
-      options: {
-        plugins: [
-          {
-            resolve: "gatsby-remark-relative-images",
-            options: {
-              include: ["featured"],
-            }
-          },
-          {
-            resolve: "gatsby-remark-images",
-            options: { maxWidth: 1024 },
-          }
-        ]
-      }
-    },
     {
       resolve: "gatsby-source-filesystem",
       options: {
@@ -64,6 +48,13 @@ module.exports = {
         name: "authors",
         path: `${__dirname}/content/authors`,
       }
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `${__dirname}/static/images/`,
+      },
     },
     {
       resolve: `gatsby-plugin-google-gtag`,

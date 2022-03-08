@@ -1,4 +1,5 @@
 const fs = require("fs");
+const path = require('path');
 
 const makeSlug = require("./src/helpers/makeSlug.js");
 const makePages = require("./src/helpers/gatsby-node/makePages.js");
@@ -18,9 +19,48 @@ exports.onPreBootstrap = ({ reporter }) => {
   });
 };
 
-// Set up schemas
+// Set up schemas so that Gatsby doesn't have to infer in tricky situations
 exports.createSchemaCustomization = ({ actions }) => {
-  const { createTypes } = actions;
+  const { createFieldExtension, createTypes } = actions
+
+  // See https://stackoverflow.com/questions/57152625/use-absolute-path-for-featured-image-in-markdown-post-with-gatsby
+  createFieldExtension({
+    name: 'imageFile',
+    extend: () => ({
+      resolve: async function (src, args, context) {
+        const partialPath = src.featuredImage;
+
+        if (!partialPath) {
+          console.log(`WARNING: No featuredImage found for ${src.title}.`);
+          return null;
+        }
+
+        // build the absolute path to the file
+        const filePath = path.join(__dirname, 'static/images', partialPath);
+
+        // run the query to fetch the image
+        const fileNode = context.nodeModel.runQuery({
+          firstOnly: true,
+          type: 'File',
+          query: {
+            filter: {
+              absolutePath: {
+                eq: filePath,
+              }
+            }
+          }
+        });
+
+        if (!fileNode) {
+          console.log(`ERROR: featuredImage ${src.featuredImage} not found!`);
+          return null;
+        }
+
+        return fileNode;
+      }
+    })
+  });
+
 
   const typeDefs = `
     type SiteSiteMetadata implements Node {
@@ -38,6 +78,14 @@ exports.createSchemaCustomization = ({ actions }) => {
       type: String
       desktopHeroImage: String
       mobileHeroImage: String
+    }
+
+    type Frontmatter @infer {
+      featuredImage: File @imageFile
+    }
+
+    type MarkdownRemark implements Node @infer {
+      frontmatter: Frontmatter
     }
   `;
 
@@ -145,7 +193,15 @@ exports.createPages = async({ graphql, actions }) => {
             frontmatter {
               title
               slug
-              featuredImage
+              featuredImage {
+                childImageSharp {
+                  gatsbyImageData(
+                    width: 200, 
+                    placeholder: BLURRED, 
+                    formats: [AUTO, WEBP, AVIF]
+                  )
+                }
+              }
             }
             excerpt
             html
@@ -155,7 +211,7 @@ exports.createPages = async({ graphql, actions }) => {
     }
   `);
 
-  if(result.data.empressPosts.edges.length === 0) {
+  if(!result.data || result.data.empressPosts.edges.length === 0) {
     console.error("No posts found!");
   }
 

@@ -145,7 +145,11 @@ exports.createPages = async({ graphql, actions }) => {
             frontmatter {
               title
               slug
-              featuredImage
+              featuredImage {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
             }
             excerpt
             html

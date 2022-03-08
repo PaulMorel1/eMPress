@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "gatsby";
+import ProgressiveImage from 'react-progressive-image';
 
 import * as AuthorStyles from "./Author.module.css";
 import makeSlug from "../helpers/makeSlug.js";
@@ -11,11 +12,13 @@ export default function Author({ author, empressPath = "" }) {
     <div className={AuthorStyles.authorContainer}>
       {author.frontmatter.featuredImage &&
         <div className={AuthorStyles.avatarContainer}>
-          <img 
+
+          <ProgressiveImage 
             src={`/images/${author.frontmatter.featuredImage}`}
-            className={AuthorStyles.avatar}
-            alt={`Avatar for ${author.frontmatter.title}`}
-          />
+            placeholder={`/images/placeholder.webp`}
+            >
+            {src => <img src={src} alt={`Avatar for ${author.frontmatter.title}`} />}
+          </ProgressiveImage>
         </div>
       }
       <div className={AuthorStyles.authorDetails}>

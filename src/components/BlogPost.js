@@ -21,7 +21,7 @@ export default function BlogPost({ post, author, fullText = true, showMeta = tru
           &nbsp;<Link to={`${empressPath}/author/${makeSlug(post.frontmatter.author)}`}>{post.frontmatter.author}</Link>
           </div>
           {post.frontmatter.tags && post.frontmatter.tags.length > 0 &&
-            <div>
+            <div className={BlogPostStyles.tagContainer}>
               {makeTagLinks({ tags: post.frontmatter.tags, empressPath })}
             </div>
           }

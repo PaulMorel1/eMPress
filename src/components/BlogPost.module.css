@@ -25,3 +25,10 @@
   margin: 0 var(--padding-xsmall);
   display: inline-block;
 }
+
+@media only screen and (max-width: 640px) {
+  .tagContainer {
+    margin-top: var(--padding-xsmall);
+  }
+}
+

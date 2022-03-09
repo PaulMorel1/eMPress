@@ -105,7 +105,7 @@ exports.createPages = async({ graphql, actions }) => {
       }
       empressPosts: allMarkdownRemark(
         sort: { 
-          fields: [frontmatter___pinned, frontmatter___date], 
+          fields: [frontmatter___date, frontmatter___pinned], 
           order: [DESC, DESC] 
         },
         filter: { 

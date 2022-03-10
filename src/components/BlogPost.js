@@ -28,18 +28,20 @@ export default function BlogPost({ post, author, fullText = true, showMeta = tru
         </div>     
       }
       {(!fullText || !post.html) && 
-        <p>{post.excerpt}</p>
+        <>
+          <p>
+            {post.excerpt}
+          </p>
+          <p>
+            <Link to={`${empressPath}/post/${makeSlug(post.frontmatter.slug)}`}>Read full article</Link>
+          </p>
+        </>
       }
       {fullText && post.html && 
         <>
           <div dangerouslySetInnerHTML={{ __html: post.html }} />
           {author && <Author author={author} empressPath={empressPath} />}
         </>
-      }
-      {(!fullText || !post.html) && 
-        <p>
-          <Link to={`${empressPath}/post/${makeSlug(post.frontmatter.slug)}`}>Read full article</Link>
-        </p>
       }
     </div>
   );

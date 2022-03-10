@@ -1,0 +1,29 @@
+.shareContainer {
+  margin-top: var(--padding-small);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.shareIcon {
+  width: 26px;
+  height: auto;
+  margin-right: var(--padding-small);
+}
+
+.shareTitle {
+  margin-right: var(--padding-small);
+  padding-bottom: 5px; /* this is only here to make the vertical centering look right */
+}
+
+/* mobile styles */
+@media only screen and (max-width: 640px) {
+  .shareIcon {
+    width: 22px;
+    height: auto;
+  }
+  
+  .shareTitle {
+    padding-bottom: 5px; /* this is only here to make the vertical centering look right */
+  }
+}

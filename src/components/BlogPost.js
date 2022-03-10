@@ -5,8 +5,9 @@ import * as BlogPostStyles from "./BlogPost.module.css";
 import makeTagLinks from "../helpers/makeTagLinks.js";
 import makeSlug from "../helpers/makeSlug.js";
 import Author from "./Author.js";
+import Sharing from "./Sharing.js";
 
-export default function BlogPost({ post, author, fullText = true, showMeta = true, type = 'post', empressPath = "" }) {
+export default function BlogPost({ post, author, fullText = true, showMeta = true, type = 'post', empressPath = "", showSharing = false }) {
   const titleLink = type === 'post' ? `${empressPath}/post/${makeSlug(post.frontmatter.slug)}` : `${empressPath}/${makeSlug(post.frontmatter.slug)}`;
   return (
     <div className={BlogPostStyles.blogPostContainer}>
@@ -40,6 +41,7 @@ export default function BlogPost({ post, author, fullText = true, showMeta = tru
       {fullText && post.html && 
         <>
           <div dangerouslySetInnerHTML={{ __html: post.html }} />
+          {showSharing && <Sharing />}
           {author && <Author author={author} empressPath={empressPath} />}
         </>
       }

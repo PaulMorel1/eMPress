@@ -21,7 +21,13 @@ const BlogPostPage = ({ data, pageContext }) => {
 
   return (
     <PageLayout seo={seoDetails}>
-      <BlogPost post={post} fullText={true} empressPath={empressPath} author={pageContext.author} />
+      <BlogPost 
+        post={post} 
+        fullText={true} 
+        empressPath={empressPath} 
+        author={pageContext.author}
+        showSharing={true}
+        />
     </PageLayout>
   )
 };

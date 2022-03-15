@@ -240,10 +240,11 @@ exports.createPages = async({ graphql, actions }) => {
 
     // store each post under the author name
     if(node.frontmatter.author) {
-      if(!authorPosts[node.frontmatter.author]) {
-        authorPosts[node.frontmatter.author] = [{ node }];
+      const authorSlug = makeSlug(node.frontmatter.author);
+      if(!authorPosts[authorSlug]) {
+        authorPosts[authorSlug] = [{ node }];
       } else {
-        authorPosts[node.frontmatter.author].push({ node });
+        authorPosts[authorSlug].push({ node });
       }
     }
 
@@ -294,6 +295,7 @@ exports.createPages = async({ graphql, actions }) => {
     templatePath: require.resolve('./src/templates/post-list-page.js'),
     authorPosts, 
     postsPerPage,
-    empressPath: empressPath
+    empressPath,
+    authors,
   });
 };

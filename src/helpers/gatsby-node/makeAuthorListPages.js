@@ -2,11 +2,13 @@ const path = require("path");
 const makeSlug = require("../makeSlug.js");
 
 // Loop through each author map and create list pages for each
-const makeAuthorListPages = ({ createPage, templatePath, authorPosts, postsPerPage = 5, empressPath = "" }) => {
-  for(let author in authorPosts) {
-    let totalPosts = authorPosts[author].length;
+const makeAuthorListPages = ({ createPage, templatePath, authorPosts, authors, postsPerPage = 5, empressPath = "" }) => {
+  for(let authorName in authorPosts) {
+    const slug = makeSlug(authorName);
+    const author = authors[slug];
+    let totalPosts = authorPosts[slug].length;
     const numPages = Math.max(Math.ceil(totalPosts / postsPerPage), 1);
-    const slug = makeSlug(author);
+
 
     // paginate the posts for this author
     for(let i = 0; i < numPages; i++) {
@@ -17,14 +19,15 @@ const makeAuthorListPages = ({ createPage, templatePath, authorPosts, postsPerPa
         path: i === 0 ? pathPrefix : `${pathPrefix}/${currentPage}`,
         component: templatePath,
         context: {
-          title: `Posts Written by "${author}"`,
+          title: `Posts Written by "${authorName}"`,
           posts: {
-            edges: authorPosts[author].slice(i * postsPerPage, (i + 1) * postsPerPage),
+            edges: authorPosts[slug].slice(i * postsPerPage, (i + 1) * postsPerPage),
           },
           nextPage: i < numPages - 1 ? `${pathPrefix}/${currentPage + 1}` : null,
           previousPage: i > 1 ? `${pathPrefix}/${currentPage - 1}` : (i === 1 ? pathPrefix : null),
           fullText: false,
           empressPath: empressPath,
+          author: author,
         }
       });
     }   

@@ -1,7 +1,7 @@
 /* desktop styles */
 @media only screen and (min-width: 641px) {
   .authorContainer {
-    margin-top: var(--padding-xlarge);
+    padding-top: var(--padding-large); /* this uses padding rather than margin so this space is the same background color as this component */
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -33,8 +33,8 @@
 /* mobile styles */
 @media only screen and (max-width: 640px) {
   .authorContainer {
-    margin-top: var(--padding-large);
+    padding-top: var(--padding-large); /* this uses padding rather than margin so this space is the same background color as this component */
     display: flex;
     flex-direction: column;
-  }  
+  }
 }

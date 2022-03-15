@@ -53,6 +53,7 @@ exports.createSchemaCustomization = ({ actions }) => {
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions;
 
+  // if the node is of type MarkdownRemark...
   if (node.internal.type === `MarkdownRemark`) {
     // get the parent directory
     const parent = getNode(node.parent);
@@ -98,6 +99,11 @@ exports.createPages = async({ graphql, actions }) => {
               author
               slug
               redirects
+              featuredImage {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
             }
             excerpt
           }
@@ -128,6 +134,11 @@ exports.createPages = async({ graphql, actions }) => {
               tags
               redirects
               pinned
+              featuredImage {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
             }
             html
             excerpt

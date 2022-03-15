@@ -20,6 +20,15 @@
   display: inline-block;
 }
 
+.featuredImageContainer {
+  margin: var(--padding-small) 0;
+}
+
+.featuredImage {
+  height: 100%;
+  width: auto;
+} 
+
 /* mobile styles */
 @media only screen and (max-width: 640px) {
   .metaContainer {

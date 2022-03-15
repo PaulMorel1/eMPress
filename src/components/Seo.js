@@ -56,14 +56,14 @@ const Seo = ({ description, title, twitterHandle, image, blogPost }) => {
     metaTags.push({
       property: 'og:image',
       content: image,
-    })
+    });
   }
 
-  // if this is running client side, then add the url metatag. We may need to find another way to do this when compiling Gatsby using CI.
-  if(window) {
+  if(blogPost) {
+    // make the url for this post
     metaTags.push({
       property: 'og:url',
-      content: window.location.href,
+      content: `${site.siteMetadata.siteUrl}/post/${blogPost.frontmatter.slug}`,
     });
   }
 

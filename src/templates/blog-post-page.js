@@ -56,6 +56,11 @@ export const query = graphql`
         tags
         slug
         pinned
+        featuredImage {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
       }
     }
   }

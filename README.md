@@ -93,6 +93,10 @@ See `src\styles\themes\dark.css` for example.
 
 1. Update the `trackingIds` field in `gatsby-config.js`. You must have signed up for Google Analytics already. Like everything else in an Empress Blog, it is free.
 
+## Why not use yarn?
+
+I'm trying for the fewest dependencies possible here. NPM is a requirement. Yarn would be an additional package. Add yarn to your own fork if you like.
+
 ## License
 
 CC BY-NC 3.0: https://creativecommons.org/licenses/by-nc/3.0/

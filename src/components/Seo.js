@@ -2,7 +2,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 
-const Seo = ({ description, title, twitterHandle, imageUrl, blogPost }) => {
+const Seo = ({ description, title, twitterHandle, image, blogPost }) => {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -36,6 +36,10 @@ const Seo = ({ description, title, twitterHandle, imageUrl, blogPost }) => {
     {
       property: 'og:type',
       content: 'website',
+    },
+    {
+      property: 'og:url',
+      content: window.location.href,
     },
     {
       name: 'twitter:title',
@@ -81,10 +85,10 @@ const Seo = ({ description, title, twitterHandle, imageUrl, blogPost }) => {
   };
 
   // if an image url was passed in, then add the og tag for it
-  if(imageUrl) {
+  if(image) {
     metaTags.push({
       property: 'og:image',
-      content: imageUrl,
+      content: image,
     })
   }
   

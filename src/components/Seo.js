@@ -79,7 +79,8 @@ const Seo = ({ description, title, twitterHandle, image, blogPost }) => {
           givenName: authorFirstName,
           familyName: authorLastName
         },
-        datePublished: blogPost.frontmatter.date
+        datePublished: blogPost.frontmatter.date,
+        image: image,
       })}
     </script>;
   };

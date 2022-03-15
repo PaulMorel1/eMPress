@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: "Empress Blog",
-    description: "Minimal Gatsby starter for a low cost, full featured blog.",
+    description: "Full featured, minimal dependency Gatsby blog starter",
     author: "Evan X. Merz",
     siteUrl: "https://www.empressblog.org",
     twitterHandle: "@EvanXMerz",

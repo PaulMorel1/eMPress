@@ -100,6 +100,7 @@ exports.createPages = async({ graphql, actions }) => {
               slug
               redirects
               featuredImage {
+                publicURL
                 childImageSharp {
                   gatsbyImageData
                 }
@@ -135,6 +136,7 @@ exports.createPages = async({ graphql, actions }) => {
               redirects
               pinned
               featuredImage {
+                publicURL
                 childImageSharp {
                   gatsbyImageData
                 }
@@ -157,6 +159,7 @@ exports.createPages = async({ graphql, actions }) => {
               title
               slug
               featuredImage {
+                publicURL
                 childImageSharp {
                   gatsbyImageData
                 }

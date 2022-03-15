@@ -9,6 +9,7 @@ const BlogPage = ({ data }) => {
   const seoDetails = {
     title: page.frontmatter.title,
     description: page.excerpt,
+    image: page.frontmatter.featuredImage?.publicURL,
     blogPost: page,
   };
 
@@ -53,6 +54,7 @@ export const query = graphql`
         author
         slug
         featuredImage {
+          publicURL
           childImageSharp {
             gatsbyImageData
           }

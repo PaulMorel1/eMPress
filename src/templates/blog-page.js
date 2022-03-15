@@ -9,7 +9,7 @@ const BlogPage = ({ data }) => {
   const seoDetails = {
     title: page.frontmatter.title,
     description: page.excerpt,
-    image: page.frontmatter.featuredImage.publicURL,
+    image: page.frontmatter.featuredImage?.publicURL,
     blogPost: page,
   };
 

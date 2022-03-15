@@ -8,7 +8,7 @@ const makePaginatedIndex = require("./src/helpers/gatsby-node/makePaginatedIndex
 
 // Ensure that the required directories exist
 exports.onPreBootstrap = ({ reporter }) => {
-  const requiredPaths = ["content", "content/authors", "content/posts", "content/pages", "content/menus", "static", "static/images"];
+  const requiredPaths = ["content", "content/authors", "content/posts", "content/pages", "content/menus", "content/images", "static", "static/images"];
 
   requiredPaths.forEach(path => {
     if(!fs.existsSync(path)) {

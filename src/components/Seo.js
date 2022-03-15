@@ -38,10 +38,6 @@ const Seo = ({ description, title, twitterHandle, image, blogPost }) => {
       content: 'website',
     },
     {
-      property: 'og:url',
-      content: window.location.href,
-    },
-    {
       name: 'twitter:title',
       content: title || site.siteMetadata.title,
     },
@@ -55,6 +51,23 @@ const Seo = ({ description, title, twitterHandle, image, blogPost }) => {
     }
   ];
 
+  // if an image url was passed in, then add the og tag for it
+  if(image) {
+    metaTags.push({
+      property: 'og:image',
+      content: image,
+    })
+  }
+
+  // if this is running client side, then add the url metatag. We may need to find another way to do this when compiling Gatsby using CI.
+  if(window) {
+    metaTags.push({
+      property: 'og:url',
+      content: window.location.href,
+    });
+  }
+
+  // define the BLogPostingSchema markup inline
   const BlogPostingSchema = (blogPost) => {
     if(!blogPost) {
       return '';
@@ -84,14 +97,6 @@ const Seo = ({ description, title, twitterHandle, image, blogPost }) => {
       })}
     </script>;
   };
-
-  // if an image url was passed in, then add the og tag for it
-  if(image) {
-    metaTags.push({
-      property: 'og:image',
-      content: image,
-    })
-  }
   
   return (
     <Helmet

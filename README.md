@@ -10,6 +10,8 @@ The goal is a blog for the 21st century that has all the core features of a stat
 
 Empress is a fully featured Gatsby blog starter.
 
+- Gatsby 4 (latest major version)
+- React 18 (latest major version)
 - Tags
 - Menus
 - Themes

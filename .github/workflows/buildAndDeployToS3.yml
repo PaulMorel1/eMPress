@@ -31,10 +31,10 @@ jobs:
         with:
           node-version: "12"
 
-      - name: yarn install
-        run: yarn install
-      - name: yarn build
-        run: yarn build
+      - name: npm install
+        run: npm install
+      - name: npm run build
+        run: npm run build
       - name: zip build
         run: tar -czvf build.tar.gz public
       - name: archive zip

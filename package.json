@@ -1,8 +1,8 @@
 {
   "name": "gatsby-starter-empress",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "private": false,
-  "description": "Empress is a full featured blog starter with tags, themes, pinned posts, redirects, google analytics, hero banner, and more.",
+  "description": "Empress is a full featured blog starter on Gatsby 4 and React 18. It supports tags, themes, pinned posts, redirects, google analytics, hero banner, and more.",
   "author": "Evan X. Merz (http://www.evanxmerz.com)",
   "license": "CCBYNC3 (https://creativecommons.org/licenses/by-nc/3.0/)",
   "repository": {
